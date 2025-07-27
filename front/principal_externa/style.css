@@ -76,7 +76,7 @@ button {
     background: none;
     margin: 2em;
     border: 1px solid black;
-    border-radius: 20em;
+    border-radius: 50%;
     width: 4em;
     height: 4em;
     cursor: pointer;

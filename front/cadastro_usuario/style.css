@@ -1,4 +1,5 @@
 html {
+    transition: filter 0.5s ease-in-out;
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
     font-size: medium;
@@ -67,10 +68,39 @@ button {
     cursor: pointer;
 }
 
-
-
-img {
+/*container da logo*/
+main>div {
+    position: relative;
     width: 28em;
     height: 28em;
-    align-self: center;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- darkMode --- */
+#theme-toggle {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 1.8em;
+    padding: 0.3em;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+
+.dark-theme {
+    filter: invert(1);
+}
+
+.dark-theme .image-container {
+    filter: invert(1);
 }
