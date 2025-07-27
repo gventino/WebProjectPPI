@@ -137,7 +137,7 @@ button img {
     filter: invert(1);
 }
 
-/*desinverte as imagens*/
+/*desinverte os botoes, imagens dos botoes e o card*/
 .dark-theme button, .dark-theme button image, .dark-theme .carousel div {
     filter: invert(1);
 }

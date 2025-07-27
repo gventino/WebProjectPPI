@@ -110,6 +110,7 @@ img {
     filter: invert(1);
 }
 
+/* desinverte o form */
 .dark-theme form {
     filter: invert(1);
 }
