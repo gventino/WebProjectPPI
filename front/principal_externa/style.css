@@ -2,6 +2,7 @@ html {
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
     font-size: medium;
+    transition: filter 0.5s ease-in-out;
 }
 
 body {
@@ -42,13 +43,12 @@ input {
     border: 1px solid black;
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
-    font-size: medium;
+    font-size: 1.2em;
 
     background-image: url('../images/SEARCH.png');
     background-repeat: no-repeat;
     background-position: right 0.5em center;
     background-size: 2em;
-
 }
 
 select {
@@ -73,7 +73,7 @@ main > div + div {
 }
 
 button {
-    background: none;
+    background-color: white;
     margin: 2em;
     border: 1px solid black;
     border-radius: 50%;
@@ -102,6 +102,7 @@ button img {
     justify-content: flex-start;
     align-items: flex-start;
     border: 1px solid black;
+    background-color: white;
     border-radius: 0.5em;
     padding: 1em;
     margin: 0px;
@@ -112,4 +113,31 @@ button img {
     height: 18em;
     align-self: center;
     border-radius: 0.5em;
+}
+
+/* --- darkMode --- */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    font-size: 1.8em;
+    padding: 0.3em;
+    border-radius: 50%;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+
+.dark-theme {
+    filter: invert(1);
+}
+
+/*desinverte as imagens*/
+.dark-theme button, .dark-theme button image, .dark-theme .carousel div {
+    filter: invert(1);
 }
