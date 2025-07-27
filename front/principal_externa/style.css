@@ -1,0 +1,115 @@
+html {
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 8em;
+    margin: 0px;
+    margin-top: 0.5em;
+
+}
+
+main {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+div {
+    margin-top: 2em;
+}
+
+/*pegando container do input e selects*/
+main > div {
+    display: flex;
+    gap: 1em;
+}
+
+input {
+    width: 30em;
+    height: 2.5em;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+
+    background-image: url('../images/SEARCH.png');
+    background-repeat: no-repeat;
+    background-position: right 0.5em center;
+    background-size: 2em;
+
+}
+
+select {
+    width: 8em;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    text-align: center;
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+}
+
+
+/*pegando container que contém o carousel*/
+main > div + div {
+    display: flex;
+    padding: 1em 1em;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    align-items: center;
+    gap: 10em;
+}
+
+button {
+    background: none;
+    margin: 2em;
+    border: 1px solid black;
+    border-radius: 20em;
+    width: 4em;
+    height: 4em;
+    cursor: pointer;
+}
+
+button img {
+    width: 3.5em;
+    height: 3.5em;
+    display: block;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    gap: 4em;
+}
+
+/*alterando os cards*/
+.carousel div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 0px;
+}
+
+.carousel div img {
+    width: 18em;
+    height: 18em;
+    align-self: center;
+    border-radius: 0.5em;
+}
