@@ -31,6 +31,7 @@ main {
 
 form {
     display: flex;
+    background-color: white;
     flex-direction: column;
     justify-items: flex-start;
     height: auto;
@@ -107,5 +108,9 @@ img {
 }
 
 .dark-theme .image-container {
+    filter: invert(1);
+}
+
+.dark-theme form {
     filter: invert(1);
 }
