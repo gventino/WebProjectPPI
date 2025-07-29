@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veíco - Interest</title>
+    <!-- adding lilita one font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>INTERESSADO EM UM VEÍCO? DEIXE SUA MENSAGEM!</h1>
+    <main>
+        <form action="">
+            <div>
+                <label for="name">Nome Completo:</label>
+                <input type="text" name="name" required placeholder="Nome Completo da Silva">
+            </div>
+            <div>
+                <label for="phone">Telefone:</label>
+                <input type="tel" name="phone" required placeholder="+99 99999-9999">
+            </div>
+            <div>
+                <label for="message">Mensagem:</label>
+                <textarea id="mensagem" name="message" rows="8" cols="50">Mensagem</textarea>
+            </div>
+            
+            <!--trocar aqui pra type submit dps-->
+            <button type="button">Enviar</button>
+        </form>
+        <div>
+            <!--img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"-->
+            <button id="theme-toggle" title="Alternar tema">🌗</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
