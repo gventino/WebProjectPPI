@@ -114,3 +114,43 @@ img {
 .dark-theme form {
     filter: invert(1);
 }
+
+@media all AND (max-width:955px) {
+    h1 {
+        font-size: 3em;
+        margin: 0px;
+        margin-top: 2em;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin: 0px;
+        margin-bottom: 1em;
+    }
+
+    main {
+        margin: 1em;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    form {
+        gap: 1em;
+        font-size: 1.4em;
+        margin: 2em;
+    }
+
+    main > div > img {
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+
+    #theme-toggle {
+        position: absolute;
+        font-size: 1.4em;
+        top: -36em;
+        right: 1.2em;
+    }
+}
