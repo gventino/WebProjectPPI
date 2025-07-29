@@ -36,6 +36,11 @@ main > div {
     gap: 1em;
 }
 
+img {
+    width: 50%;
+    height: 50%;
+}
+
 /*pegando container que contém o carousel*/
 main > div + div {
     display: flex;
