@@ -1,0 +1,411 @@
+html {
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+    transition: filter 0.5s ease-in-out;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 6em;
+    margin: 0px;
+    margin-top: 0.5em;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 2.5em;
+    margin: 0px;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.8em;
+    margin: 0px;
+    margin-bottom: 0.8em;
+    color: #333;
+}
+
+main {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo-container {
+    margin-bottom: 2em;
+}
+
+.logo-container img {
+    width: 25%;
+    height: 25%;
+}
+
+.announcement-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+/* Galeria */
+.photo-gallery {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+.main-photo {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.main-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    border-color: #333;
+}
+
+.thumbnail.active {
+    border-color: #2196f3;
+    border-width: 3px;
+}
+
+/* Info do veiculo  */
+.vehicle-info {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+}
+
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    min-width: 200px;
+    flex: 1 1 500px;
+}
+.info-section h4 {
+    text-align: center;
+}
+
+.info-item, .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    border-bottom: 1px solid #eee;
+}
+
+.info-item:last-child, .contact-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.value {
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Descricao */
+.description-section {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+}
+
+.description-content {
+    line-height: 1.6;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.description-content p {
+    margin-bottom: 1em;
+}
+
+/* Preço e Contato */
+.price-contact-section {
+    display: flex;
+    gap: 2em;
+    width: 100%;
+    align-items: stretch;
+}
+
+.price-contact-section > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-info, .contact-info {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.price-value {
+    width: 100%;
+    font-size: 3em;
+    font-weight: bold;
+    color: #4caf50;
+    margin: 0.5em 0;
+}
+
+.price-note {
+    font-size: 1.1em;
+    color: #666;
+    font-style: italic;
+}
+
+
+.navigation-buttons {
+    display: flex;
+    gap: 2em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-btn {
+    background-color: white;
+    font-family: 'Lilita One', sans-serif;
+    padding: 1em 2em;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition:  0.2s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+/* Dark Mode */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    font-size: 1.8em;
+    padding: 0.3em;
+    border-radius: 50%;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid black;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme .photo-gallery,
+.dark-theme .vehicle-info,
+.dark-theme .description-section,
+.dark-theme .price-info,
+.dark-theme .contact-info {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .label {
+    color: #ffffff;
+}
+
+.dark-theme .value {
+    color: #cccccc;
+}
+
+.dark-theme .description-content {
+    color: #ffffff;
+}
+
+.dark-theme .price-value {
+    color: #4caf50;
+}
+
+.dark-theme .price-note {
+    color: #cccccc;
+}
+
+.dark-theme .nav-btn {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .nav-btn:hover {
+    background-color: #404040;
+}
+
+.dark-theme #theme-toggle {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme h4 {
+    color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 1678px) {
+    h1 {
+        margin-top: 1em;
+        font-size: 4em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-contact-section {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #theme-toggle {
+        top: -1.0em;
+        right: -1.4em;
+    }
+}
+
+@media (max-width: 799px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.8em;
+    }
+
+    h4 {
+        font-size: 1.5em;
+    }
+
+    .main-photo {
+        height: 250px;
+    }
+
+    .thumbnail {
+        width: 80px;
+        height: 60px;
+    }
+
+    .price-value {
+        font-size: 2.5em;
+    }
+
+    .nav-btn {
+        padding: 0.8em 1.5em;
+        font-size: 1em;
+    }
+
+    .info-item, .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3em;
+    }
+
+    .label, .value {
+        font-size: 1em;
+    }
+} 

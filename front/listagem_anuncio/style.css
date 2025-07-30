@@ -1,0 +1,291 @@
+html {
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+    transition: filter 0.5s ease-in-out;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 6em;
+    margin: 0px;
+    margin-top: 0.5em;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 2em;
+    margin: 0px;
+    margin-bottom: 0.5em;
+}
+
+main {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.announcements-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 100%;
+    max-width: 800px;
+}
+
+.announcement-card {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1.5em;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.announcement-image {
+    flex-shrink: 0;
+}
+
+.announcement-image img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.announcement-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.model, .year {
+    font-size: 1.2em;
+    margin: 0px;
+    color: #666;
+}
+
+.announcement-actions {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background-color: white;
+    font-family: 'Lilita One', sans-serif;
+    padding: 0.8em 1.2em;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.2s;
+    min-width: 120px;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+
+
+.delete-btn {
+    background-color: #ffebee;
+    border-color: #f44336;
+}
+
+.delete-btn:hover {
+    background-color: #ffcdd2;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.nav-btn {
+    background-color: white;
+    font-family: 'Lilita One', sans-serif;
+    padding: 1em 2em;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.2s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+.logo-container {
+    margin-top: 2em;
+}
+
+.logo-container img {
+    width: 25%;
+    height: 25%;
+}
+
+/* Dark mode */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    font-size: 1.8em;
+    padding: 0.3em;
+    border-radius: 50%;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid black;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme .announcement-card {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .model, .dark-theme .year {
+    color: #cccccc;
+}
+
+.dark-theme .action-btn {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+
+.dark-theme .interests-btn {
+    background-color: #4a1f5f;
+    border-color: #9c27b0;
+}
+
+.dark-theme .delete-btn {
+    background-color: #5f1f1f;
+    border-color: #f44336;
+}
+
+.dark-theme .delete-btn:hover {
+    background-color: #8a2f2f;
+}
+
+.dark-theme .nav-btn {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .nav-btn:hover {
+    background-color: #404040;
+}
+
+.dark-theme #theme-toggle {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 1678px) {
+    h1 {
+        margin-top: 1em;
+        font-size: 4em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .announcement-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1em;
+    }
+
+    .announcement-actions {
+        justify-content: center;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #theme-toggle {
+        top: -1.0em;
+        right: -1.4em;
+    }
+}
+
+@media (max-width: 799px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    .announcement-card {
+        padding: 1em;
+    }
+
+    .announcement-image img {
+        width: 120px;
+        height: 80px;
+    }
+
+    .action-btn {
+        padding: 0.6em 1em;
+        font-size: 0.9em;
+        min-width: 100px;
+    }
+
+    .nav-btn {
+        padding: 0.8em 1.5em;
+        font-size: 1em;
+    }
+} 

@@ -1,0 +1,481 @@
+html {
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 200;
+    font-size: medium;
+    transition: filter 0.5s ease-in-out;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 6em;
+    margin: 0px;
+    margin-top: 0.5em;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 2.5em;
+    margin: 0px;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.8em;
+    margin: 0px;
+    margin-bottom: 0.8em;
+    color: #333;
+}
+
+main {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo-container {
+    margin-bottom: 2em;
+}
+
+.logo-container img {
+    width: 25%;
+    height: 25%;
+}
+
+.announcement-summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.summary-card {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+.summary-image {
+    flex-shrink: 0;
+}
+
+.summary-image img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.summary-info {
+    flex-grow: 1;
+}
+
+.summary-info h4 {
+    margin-bottom: 0.5em;
+    font-size: 2em;
+}
+
+.summary-details {
+    font-size: 1.2em;
+    color: #666;
+    margin: 0.5em 0;
+}
+
+.interests-count {
+    font-size: 1.1em;
+    color: #4caf50;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+/* Interesses cards*/
+.interests-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.interest-card {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 2em;
+    transition: 0.2s;
+}
+
+
+.interest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #eee;
+}
+
+.interest-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2196f3;
+    background-color: #e3f2fd;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    border: 2px solid #2196f3;
+}
+
+.interest-date {
+    font-size: 1.1em;
+    color: #666;
+    font-style: italic;
+}
+
+.interest-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    border-bottom: 1px solid #eee;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.value {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.message-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.message-section h4 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.message-content {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.5em;
+    line-height: 1.6;
+}
+
+.message-content p {
+    margin: 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.interest-actions {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 2px solid #eee;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background-color: white;
+    font-family: 'Lilita One', sans-serif;
+    padding: 0.8em 1.5em;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.2s;
+    min-width: 180px;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.contact-btn {
+    background-color: #e8f5e8;
+    border-color: #4caf50;
+    color: #2e7d32;
+}
+
+.contact-btn:hover {
+    background-color: #c8e6c9;
+}
+
+.mark-btn {
+    background-color: #fff3e0;
+    border-color: #ff9800;
+    color: #e65100;
+}
+
+.mark-btn:hover {
+    background-color: #ffe0b2;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 2em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-btn {
+    background-color: white;
+    font-family: 'Lilita One', sans-serif;
+    padding: 1em 2em;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.2s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+/* Dark Mode */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    font-size: 1.8em;
+    padding: 0.3em;
+    border-radius: 50%;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 2px solid black;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme .summary-card,
+.dark-theme .interest-card {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .label {
+    color: #ffffff;
+}
+
+.dark-theme .value {
+    color: #cccccc;
+}
+
+.dark-theme .summary-details {
+    color: #cccccc;
+}
+
+.dark-theme .message-content {
+    background-color: #404040;
+    border-color: #666;
+    color: #ffffff;
+}
+.dark-theme .message-content p {
+    color: #ffffff;
+}
+
+
+
+.dark-theme .interest-number {
+    background-color: #1e3a5f;
+    border-color: #2196f3;
+    color: #ffffff;
+}
+
+.dark-theme .interest-date {
+    color: #cccccc;
+}
+
+.dark-theme .contact-btn {
+    background-color: #1e5f1e;
+    border-color: #4caf50;
+    color: #ffffff;
+}
+
+.dark-theme .contact-btn:hover {
+    background-color: #2d8a2d;
+}
+
+.dark-theme .mark-btn {
+    background-color: #5f3f1e;
+    border-color: #ff9800;
+    color: #ffffff;
+}
+
+.dark-theme .mark-btn:hover {
+    background-color: #8a5f2d;
+}
+
+.dark-theme .nav-btn {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme .nav-btn:hover {
+    background-color: #404040;
+}
+
+.dark-theme #theme-toggle {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dark-theme h4 {
+    color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 1678px) {
+    h1 {
+        margin-top: 1em;
+        font-size: 4em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1em;
+    }
+
+    .interest-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #theme-toggle {
+        top: -1.0em;
+        right: -1.4em;
+    }
+}
+
+@media (max-width: 799px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.8em;
+    }
+
+    h4 {
+        font-size: 1.5em;
+    }
+
+    .interest-card {
+        padding: 1.5em;
+    }
+
+    .interest-header {
+        flex-direction: column;
+        gap: 1em;
+        align-items: flex-start;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3em;
+    }
+
+    .label, .value {
+        font-size: 1em;
+    }
+
+    .action-btn {
+        padding: 0.6em 1em;
+        font-size: 0.9em;
+        min-width: 150px;
+    }
+
+    .nav-btn {
+        padding: 0.8em 1.5em;
+        font-size: 1em;
+    }
+
+    .summary-image img {
+        width: 100px;
+        height: 70px;
+    }
+} 
