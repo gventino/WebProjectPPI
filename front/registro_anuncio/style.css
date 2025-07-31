@@ -29,17 +29,23 @@ main {
     gap: 4em;
 }
 
-form {
+span {
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-items: flex-start;
 
     gap: 1em;
-    padding: 0px 0.5em;
+    padding: 0.5em 0.5em;
     border: 1px solid black;
     border-radius: 0.5em;
     font-size: 1.8em;
+}
+
+form {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1em;
 }
 
 form > div {
@@ -68,11 +74,31 @@ button {
     border: 1px solid black;
     border-radius: 0.5em;
     background-color: inherit;
-    margin: 1em 0px;
+    font-family: inherit;
     font-size: 0.5em;
     padding: 0.5em;
     cursor: pointer;
 }
+
+textarea{
+    font-family: inherit;
+}
+
+
+input[type="file"]{
+    border: 0;
+    color: gray;
+}
+
+input::file-selector-button{
+    border: 1 black;
+    font-size: inherit;
+    border-radius: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    color: black;
+}
+
 
 /*container da logo*/
 main>div {
@@ -140,6 +166,7 @@ img {
         gap: 1em;
         font-size: 1.4em;
         margin: 2em;
+        flex-direction: column;
     }
 
     main > div > img {

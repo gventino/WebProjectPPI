@@ -4,80 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veíco - Interest</title>
+    <title>Veíco - Advert</title>
     <!-- adding lilita one font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>REGISTRE SEU ANÚNCIO!</h1>
+    <div>
+        <h1>REGISTRE SEU ANÚNCIO!</h1>
+        <button id="theme-toggle" title="Alternar tema">🌗</button>
+    </div>
     <main>
         <form action="">
-            <div>
-                <label for="marca">Marca:</label>
-                <input type="text" name="marca" required placeholder="Marca X">
-            </div>
-            <div>
-                <label for="modelo">Modelo:</label>
-                <input type="text" name="modelo" required placeholder="Modelo 143">
-            </div>
-            </div>
-            <div>
-                <label for="ano">Ano de fabricação:</label>
-                <input type="number" name="ano" required placeholder="2001">
-            </div>
-            </div>
-            <div>
-                <label for="cor">Cor:</label>
-                <input type="text" name="cor" required placeholder="Cinza">
-            </div>
-            <div>
-                <label for="kms">Quilometragem (em Km):</label>
-                <input type="number" name="kms" required placeholder="11900">
-            </div>
-            <div>
-                <label for="desc">Descrição:</label>
-                <textarea id="desc" name="desc" rows="6" cols="50">Descrição</textarea>
-            </div>
-            <div>
-                <label for="valor">Valor (em R$):</label>
-                <input type="number" name="valor" required placeholder="15000">
-            </div>
-            <div>
-                <label for="estado">Estado:</label>
-                <input type="text" name="estado" required placeholder="MG">
-            </div>
-            <div>
-                <label for="cidade">Cidade:</label>
-                <input type="text" name="cidade" required placeholder="Uberlândia">
-            </div>
-            <div>
-                <label for="foto1">Primeira foto do veículo:</label>
-                <input type="file" name="foto1" accept="image/*" required>
-            </div>
-            <div>
-                <label for="foto2">Segunda foto do veículo:</label>
-                <input type="file" name="foto2" accept="image/*" required>
-            </div>
-            <div>
-                <label for="foto3">Terceira foto do veículo:</label>
-                <input type="file" name="foto3" accept="image/*" required>
-            </div>
-            <div>
-                <label for="fotoE">Uma foto extra do veículo (opcional):</label>
-                <input type="file" name="fotoE" accept="image/*" required>
-            </div>
-
-            <!--trocar aqui pra type submit dps-->
-            <button type="button">Enviar</button>
+            <span>
+                <div>
+                    <label for="marca">Marca:</label>
+                    <input type="text" name="marca" required placeholder="Marca X">
+                </div>
+                <div>
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" name="modelo" required placeholder="Modelo 143">
+                </div>
+                </div>
+                <div>
+                    <label for="ano">Ano de fabricação:</label>
+                    <input type="number" name="ano" required placeholder="2001">
+                </div>
+                </div>
+                <div>
+                    <label for="cor">Cor:</label>
+                    <input type="text" name="cor" required placeholder="Cinza">
+                </div>
+                <div>
+                    <label for="kms">Quilometragem (em Km):</label>
+                    <input type="number" name="kms" required placeholder="11900">
+                </div>
+                <div>
+                    <label for="desc">Descrição:</label>
+                    <textarea id="desc" name="desc" rows="6" cols="50">Descrição</textarea>
+                </div>
+                <div>
+                    <label for="valor">Valor (em R$):</label>
+                    <input type="number" name="valor" required placeholder="15000">
+                </div>
+            </span>
+            <span>
+                <div>
+                    <label for="estado">Estado:</label>
+                    <input type="text" name="estado" required placeholder="MG">
+                </div>
+                <div>
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" name="cidade" required placeholder="Uberlândia">
+                </div>
+                <div>
+                    <label for="foto1">Primeira foto do veículo:</label>
+                    <input type="file" name="foto1" accept="image/*" required>
+                </div>
+                <div>
+                    <label for="foto2">Segunda foto do veículo:</label>
+                    <input type="file" name="foto2" accept="image/*" required>
+                </div>
+                <div>
+                    <label for="foto3">Terceira foto do veículo:</label>
+                    <input type="file" name="foto3" accept="image/*" required>
+                </div>
+                <div>
+                    <label for="fotoE">Uma foto extra do veículo (opcional):</label>
+                    <input type="file" name="fotoE" accept="image/*" required>
+                </div>
+                <!--trocar aqui pra type submit dps-->
+                <button type="button">Enviar</button>
+            </span>
         </form>
-        <div>
-            <!--img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"-->
-            <button id="theme-toggle" title="Alternar tema">🌗</button>
-        </div>
     </main>
     <script src="script.js"></script>
 </body>
