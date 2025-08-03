@@ -9,6 +9,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -67,8 +69,8 @@ main {
 }
 
 .announcement-image img {
-    width: 150px;
-    height: 100px;
+    width: 180px;
+    height: 120px;
     object-fit: cover;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -136,6 +138,7 @@ main {
     cursor: pointer;
     font-size: 1.2em;
     transition: 0.2s;
+    min-width: 193px;
 }
 
 .nav-btn:hover {
@@ -153,24 +156,6 @@ main {
 }
 
 /* Dark mode */
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px; 
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-    background-color: white;
-    border: 2px solid black;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-}
 
 .dark-theme {
     background-color: #1a1a1a;
@@ -218,12 +203,6 @@ main {
     background-color: #404040;
 }
 
-.dark-theme #theme-toggle {
-    background-color: #2d2d2d;
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
 /* Responsividade */
 @media (max-width: 1678px) {
     h1 {
@@ -245,16 +224,12 @@ main {
         justify-content: center;
     }
 
-    .navigation-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #theme-toggle {
-        top: -1.0em;
-        right: -1.4em;
+    .announcement-card{
+        margin: 1em;
     }
 }
+
+
 
 @media (max-width: 799px) {
     h1 {
@@ -287,5 +262,35 @@ main {
     .nav-btn {
         padding: 0.8em 1.5em;
         font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    
+    .logo-section img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .mobile-nav {
+        padding: 0.8rem;
+    }
+
+    .mobile-nav-item {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    #theme-toggle {
+        top: -8px;
+        right: -8px;
+        font-size: 0.9em;
+    }
+
+    .navigation-buttons {
+        margin-top: 0;
+        margin-bottom: 1em;
+        flex-direction: column;
+        align-items: center;
     }
 } 

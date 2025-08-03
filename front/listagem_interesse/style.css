@@ -10,6 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    margin: 0;
 }
 
 h1 {
@@ -50,15 +51,14 @@ main {
     gap: 2em;
     width: 100%;
     max-width: 1200px;
+    box-sizing: border-box;
 }
 
-.logo-container {
+
+
+
+.navigation-buttons {
     margin-bottom: 2em;
-}
-
-.logo-container img {
-    width: 25%;
-    height: 25%;
 }
 
 .announcement-summary {
@@ -285,25 +285,6 @@ main {
 }
 
 /* Dark Mode */
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px; 
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-    background-color: white;
-    border: 2px solid black;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: 0.2s;
-}
-
 .dark-theme {
     background-color: #1a1a1a;
     color: #ffffff;
@@ -379,12 +360,6 @@ main {
     background-color: #404040;
 }
 
-.dark-theme #theme-toggle {
-    background-color: #2d2d2d;
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
 .dark-theme h4 {
     color: #ffffff;
 }
@@ -404,10 +379,20 @@ main {
         font-size: 2em;
     }
 
+    main {
+        padding: 0 2em;
+        max-width: 1000px;
+    }
+
     .summary-card {
         flex-direction: column;
         text-align: center;
         gap: 1em;
+        padding: 1.8em;
+    }
+
+    .interest-card {
+        padding: 1.8em;
     }
 
     .interest-actions {
@@ -419,10 +404,31 @@ main {
         flex-direction: column;
         align-items: center;
     }
+}
 
-    #theme-toggle {
-        top: -1.0em;
-        right: -1.4em;
+@media (max-width: 1600px) {
+    main {
+        padding: 0 3em;
+        max-width: 900px;
+    }
+
+    .summary-card {
+        padding: 1.5em;
+    }
+
+    .interest-card {
+        padding: 1.5em;
+    }
+
+    .action-btn {
+        padding: 0.7em 1.3em;
+        font-size: 0.95em;
+        min-width: 160px;
+    }
+
+    .nav-btn {
+        padding: 0.9em 1.7em;
+        font-size: 1.1em;
     }
 }
 
@@ -443,8 +449,17 @@ main {
         font-size: 1.5em;
     }
 
+    main {
+        padding: 0 1.5em;
+        max-width: 800px;
+    }
+
+    .summary-card {
+        padding: 1.3em;
+    }
+
     .interest-card {
-        padding: 1.5em;
+        padding: 1.3em;
     }
 
     .interest-header {
@@ -477,5 +492,81 @@ main {
     .summary-image img {
         width: 100px;
         height: 70px;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2.5em;
+        margin-top: 0.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    h4 {
+        font-size: 1.2em;
+    }
+
+    main {
+        margin-top: 1em;
+        gap: 1.5em;
+        padding: 0 1em;
+    }
+
+    .summary-card {
+        padding: 1em;
+        border-radius: 10px;
+    }
+
+    .interest-card {
+        padding: 1em;
+        border-radius: 10px;
+    }
+
+    .interest-header {
+        gap: 0.8em;
+    }
+
+    .contact-item {
+        padding: 0.4em;
+        font-size: 0.9em;
+    }
+
+    .label, .value {
+        font-size: 0.95em;
+    }
+
+    .message-content {
+        padding: 1.2em;
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    .action-btn {
+        padding: 0.5em 0.8em;
+        font-size: 0.85em;
+        min-width: 140px;
+    }
+
+    .nav-btn {
+        padding: 0.7em 1.2em;
+        font-size: 0.9em;
+        min-width: 150px;
+    }
+
+    .summary-image img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .navigation-buttons {
+        gap: 1em;
+        margin-top: 1.5em;
     }
 } 
