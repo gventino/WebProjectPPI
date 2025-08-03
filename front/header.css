@@ -1,4 +1,4 @@
-.header {
+header {
     width: 100%;
     background-color: white;
     border-bottom: 2px solid black;
@@ -7,7 +7,7 @@
     z-index: 1000;
 }
 
-.header-container {
+header>div {
     max-width: 600px;
     margin: 0 auto;
     padding: 1rem 2rem;
@@ -17,7 +17,8 @@
     position: relative;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -49,8 +50,8 @@
 }
 
 .logo-section img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -109,7 +110,7 @@
 #theme-toggle {
     position: absolute;
     top: -5px;
-    right: -5px; 
+    right: -5px;
     font-size: 1.2em;
     padding: 0.2em;
     border-radius: 50%;
@@ -149,7 +150,7 @@
 }
 
 .dark-theme .mobile-menu-toggle span {
-    background-color: #ffffff;
+    background-color: black;
 }
 
 .dark-theme #theme-toggle {
@@ -160,8 +161,8 @@
 
 @media (max-width: 1678px) {
     #theme-toggle {
-        top: -12px;
-        right: -12px;
+        top: -10px;
+        right: -4px;
         font-size: 1.1em;
     }
 }
@@ -171,7 +172,8 @@
         padding: 0.8rem 1rem;
     }
 
-    .nav-left, .nav-right {
+    .nav-left,
+    .nav-right {
         display: none;
     }
 
@@ -179,14 +181,9 @@
         display: flex;
     }
 
-    .logo-section img {
-        width: 50px;
-        height: 50px;
-    }
-
     #theme-toggle {
-        top: -12px;
-        right: -12px;
+        top: -8px;
+        right: -4px;
         font-size: 1em;
     }
 }
@@ -197,8 +194,8 @@
     }
 
     .logo-section img {
-        width: 40px;
-        height: 40px;
+        width: 80px;
+        height: 80px;
     }
 
     .mobile-nav {
@@ -215,4 +212,4 @@
         right: -8px;
         font-size: 0.9em;
     }
-} 
+}

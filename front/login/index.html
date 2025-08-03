@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veíco - Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <header>
+        <div>
+            <div class="nav-left">
+                <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
+                <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
+            </div>
+            <div class="logo-section">
+                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"
+                    onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
+                <button id="theme-toggle" title="Alternar tema">🌗</button>
+            </div>
+            <div class="nav-right">
+                <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
+                <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav">
+            <button class="mobile-nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
+            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus
+                Anúncios</button>
+            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo
+                Anúncio</button>
+            <button class="mobile-nav-item"
+                onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+        </div>
+    </header>
+
     <h1>BEM-VINDO</h1>
     <h2>FAÇA SEU LOGIN!</h2>
     <main>
@@ -23,13 +58,9 @@
             </div>
             <button type="button">Enviar</button>
         </form>
-
-        <div>
-            <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo" onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
-            <button id="theme-toggle" title="Alternar tema">🌗</button>
-        </div>
-
     </main>
     <script src="script.js"></script>
+    <script src="../header.js"></script>
 </body>
+
 </html>

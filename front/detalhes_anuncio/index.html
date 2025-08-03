@@ -13,41 +13,45 @@
 </head>
 
 <body>
-        <header class="header">
-            <div class="header-container">
-                <div class="nav-left">
-                    <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
-                    <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
-                </div>
-                <div class="logo-section">
-                    <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo" onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
-                    <button id="theme-toggle" title="Alternar tema">🌗</button>
-                </div>
-                <div class="nav-right">
-                    <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-                    <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
-                </div>
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+    <header>
+        <div>
+            <div class="nav-left">
+                <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
+                <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
             </div>
-            <div class="mobile-nav">
-                <button class="mobile-nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
-                <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
-                <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-                <button class="mobile-nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+            <div class="logo-section">
+                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"
+                    onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
+                <button id="theme-toggle" title="Alternar tema">🌗</button>
             </div>
-        </header>
+            <div class="nav-right">
+                <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
+                <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav">
+            <button class="mobile-nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
+            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus
+                Anúncios</button>
+            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo
+                Anúncio</button>
+            <button class="mobile-nav-item"
+                onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+        </div>
+    </header>
 
-    
+
     <main>
         <h1>DETALHES DO ANÚNCIO</h1>
         <h2>HONDA CIVIC 2020</h2>
 
         <div class="announcement-details">
-            
+
             <div class="photo-gallery">
                 <h3>FOTOS DO VEÍCULO</h3>
                 <div class="gallery-container">
@@ -55,17 +59,21 @@
                         <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto principal do veículo" id="main-photo">
                     </div>
                     <div class="thumbnail-container">
-                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 1" class="thumbnail active" onclick="changeMainPhoto(this)">
-                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 2" class="thumbnail" onclick="changeMainPhoto(this)">
-                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 3" class="thumbnail" onclick="changeMainPhoto(this)">
-                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 4" class="thumbnail" onclick="changeMainPhoto(this)">
+                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 1" class="thumbnail active"
+                            onclick="changeMainPhoto(this)">
+                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 2" class="thumbnail"
+                            onclick="changeMainPhoto(this)">
+                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 3" class="thumbnail"
+                            onclick="changeMainPhoto(this)">
+                        <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto 4" class="thumbnail"
+                            onclick="changeMainPhoto(this)">
                     </div>
                 </div>
             </div>
 
             <div class="vehicle-info">
                 <h3>INFORMAÇÕES DO VEÍCULO</h3>
-                
+
                 <div class="info-grid">
                     <div class="info-section">
                         <h4>DADOS BÁSICOS</h4>
@@ -169,7 +177,11 @@
                 <h3>DESCRIÇÃO</h3>
                 <div class="description-content">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
+                        pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean
+                        sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+                        nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
+                        sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
                     </p>
                 </div>
             </div>
@@ -204,22 +216,13 @@
         </div>
 
         <div class="navigation-buttons">
-            <button onclick="location.href='../registro_interesse/index.html'" class="nav-btn">Demonstrar Interesse</button>
+            <button onclick="location.href='../registro_interesse/index.html'" class="nav-btn">Demonstrar
+                Interesse</button>
         </div>
     </main>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileNav.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-            });
-        });
-    </script>
+    <script src="../header.js"></script>
 </body>
 
-</html> 
+</html>

@@ -13,35 +13,39 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-container">
+    <header>
+        <div>
             <div class="nav-left">
                 <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
                 <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
             </div>
-            
+
             <div class="logo-section">
-                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo" onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
+                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"
+                    onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
                 <button id="theme-toggle" title="Alternar tema">🌗</button>
             </div>
-            
+
             <div class="nav-right">
                 <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
                 <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
             </div>
-            
+
             <div class="mobile-menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        
+
         <div class="mobile-nav">
             <button class="mobile-nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
-            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
-            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-            <button class="mobile-nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus
+                Anúncios</button>
+            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo
+                Anúncio</button>
+            <button class="mobile-nav-item"
+                onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
         </div>
     </header>
     <main>
@@ -65,7 +69,7 @@
 
         <div class="interests-container">
             <h3>LISTA DE INTERESSES</h3>
-            
+
             <div class="interest-card">
                 <div class="interest-header">
                     <div class="interest-number">#1</div>
@@ -90,8 +94,8 @@
                         <h4>Mensagem:</h4>
                         <div class="message-content">
                             <p>
-                                Olá! Tenho muito interesse no seu Honda Civic. Gostaria de saber se ainda está 
-                                disponível e se posso agendar uma visita para ver o veículo pessoalmente. 
+                                Olá! Tenho muito interesse no seu Honda Civic. Gostaria de saber se ainda está
+                                disponível e se posso agendar uma visita para ver o veículo pessoalmente.
                                 Tem ar condicionado??
                             </p>
                         </div>
@@ -127,7 +131,12 @@
                         <h4>Mensagem:</h4>
                         <div class="message-content">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
+                                pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu
+                                aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum
+                                egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper
+                                vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+                                himenaeos.
                             </p>
                         </div>
                     </div>
@@ -139,24 +148,13 @@
             </div>
 
 
-        <div class="navigation-buttons">
-            <button onclick="location.href='../detalhes_anuncio/index.html'" class="nav-btn">Ver Anúncio</button>
-        </div>
+            <div class="navigation-buttons">
+                <button onclick="location.href='../detalhes_anuncio/index.html'" class="nav-btn">Ver Anúncio</button>
+            </div>
     </main>
 
     <script src="script.js"></script>
-    <script>
-        // TOGGLE DO HEADER NO MOBILE
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileNav.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-            });
-        });
-    </script>
+    <script src="../header.js"></script>
 </body>
 
-</html> 
+</html>

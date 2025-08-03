@@ -6,6 +6,7 @@ html {
 }
 
 body {
+    margin: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +15,7 @@ body {
 h1 {
     font-size: 8em;
     margin: 0px;
+    margin-top: 0.25em;
 }
 
 h2 {
@@ -46,25 +48,21 @@ form>div {
     margin-top: 1em;
 }
 
-div {
-    display: flex;
-    flex-direction: column;
-}
-
 input {
     border: 1px solid black;
     font-size: 0.8em;
     border-radius: 0.5em;
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
+    padding: 0em 0.2em 0em 0.5em;
 }
 
 input::placeholder {
     font-size: 0.8em;
 }
 
-button {
-    align-self: flex-start;
+form>button {
+    align-self: flex-end;
     border: 1px solid black;
     border-radius: 0.5em;
     background-color: inherit;
@@ -74,11 +72,9 @@ button {
     cursor: pointer;
 }
 
-/*container da logo*/
-main>div {
-    position: relative;
-    width: 28em;
-    height: 28em;
+form>button:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
 }
 
 img {
@@ -86,37 +82,57 @@ img {
     height: 100%;
 }
 
-/* --- darkMode --- */
-#theme-toggle {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    background-color: white;
-    cursor: pointer;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-}
-
 .dark-theme {
-    filter: invert(1);
+    background-color: #1a1a1a;
+    color: #ffffff;
 }
 
-.dark-theme .image-container {
-    filter: invert(1);
-}
-
-/* desinverte o form */
 .dark-theme form {
-    filter: invert(1);
+    color: #ffffff;
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+}
+
+.dark-theme form>button {
+    color: white;
+    border-color: #ffffff;
 }
 
 @media all AND (max-width:860px) {
+    h1 {
+        font-size: 5em;
+        margin: 0px;
+        margin-top: 2em;
+    }
+
+    h2 {
+        font-size: 3em;
+        margin: 0px;
+        margin-bottom: 1.5em;
+    }
+
+    main {
+        margin: 1em;
+        gap: 4em;
+    }
+
+    form {
+        gap: 1em;
+        font-size: 2.0em;
+        margin: 0px;
+    }
+
+    input {
+        font-size: 0.7em;
+    }
+
+    main>div {
+        width: 14em;
+        height: 14em;
+    }
+}
+
+@media all AND (max-width:390px) {
     h1 {
         font-size: 3em;
         margin: 0px;
@@ -141,15 +157,8 @@ img {
         margin: 0px;
     }
 
-    main > div {
+    main>div {
         width: 14em;
         height: 14em;
-    }
-
-    #theme-toggle {
-        position: absolute;
-        font-size: 1.6em;
-        top: -0.3em;
-        right: -0.2em;
     }
 }

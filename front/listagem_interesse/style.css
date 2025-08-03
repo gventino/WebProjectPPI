@@ -314,6 +314,7 @@ main {
     border-color: #666;
     color: #ffffff;
 }
+
 .dark-theme .message-content p {
     color: #ffffff;
 }
@@ -474,7 +475,8 @@ main {
         gap: 0.3em;
     }
 
-    .label, .value {
+    .label,
+    .value {
         font-size: 1em;
     }
 
@@ -538,7 +540,8 @@ main {
         font-size: 0.9em;
     }
 
-    .label, .value {
+    .label,
+    .value {
         font-size: 0.95em;
     }
 
@@ -569,4 +572,4 @@ main {
         gap: 1em;
         margin-top: 1.5em;
     }
-} 
+}

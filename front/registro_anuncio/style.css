@@ -48,7 +48,7 @@ form {
     gap: 1em;
 }
 
-form > div {
+form>div {
     margin-top: 0.1em;
 }
 
@@ -80,17 +80,17 @@ button {
     cursor: pointer;
 }
 
-textarea{
+textarea {
     font-family: inherit;
 }
 
 
-input[type="file"]{
+input[type="file"] {
     border: 0;
     color: gray;
 }
 
-input::file-selector-button{
+input::file-selector-button {
     border: 1 black;
     font-size: inherit;
     border-radius: inherit;
@@ -169,7 +169,7 @@ img {
         flex-direction: column;
     }
 
-    main > div > img {
+    main>div>img {
         width: 0px;
         height: 0px;
         display: none;

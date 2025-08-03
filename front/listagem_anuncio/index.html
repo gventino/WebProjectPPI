@@ -13,14 +13,15 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-container">
+    <header>
+        <div>
             <div class="nav-left">
                 <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
                 <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
             </div>
             <div class="logo-section">
-                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo" onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
+                <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"
+                    onclick="location.href='../principal_interna/index.html'" style="cursor: pointer;">
                 <button id="theme-toggle" title="Alternar tema">🌗</button>
             </div>
             <div class="nav-right">
@@ -35,9 +36,12 @@
         </div>
         <div class="mobile-nav">
             <button class="mobile-nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
-            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
-            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-            <button class="mobile-nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+            <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus
+                Anúncios</button>
+            <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo
+                Anúncio</button>
+            <button class="mobile-nav-item"
+                onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
         </div>
     </header>
 
@@ -45,7 +49,7 @@
     <main>
         <h1>MEUS ANÚNCIOS</h1>
         <h2>LISTAGEM DE ANÚNCIOS</h2>
-        
+
         <div class="announcements-container">
             <!-- Anuncio 1 -->
             <div class="announcement-card">
@@ -106,6 +110,7 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="../header.js"></script>
     <script>
         function viewDetails(announcementId) {
             // depois vamos passar o id do anuncio para a pagina de detalhes e interesses
@@ -116,17 +121,6 @@
         function viewInterests(announcementId) {
             location.href = `../listagem_interesse/index.html`;
         }
-
-        // TOGGLE DO HEADER NO MOBILE
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileNav.classList.toggle('active');
-                mobileMenuToggle.classList.toggle('active');
-            });
-        });
     </script>
 </body>
 

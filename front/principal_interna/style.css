@@ -33,7 +33,7 @@ div {
 }
 
 /*pegando container do input e selects*/
-main > div {
+main>div {
     display: flex;
     justify-content: center;
     gap: 1em;
@@ -67,7 +67,7 @@ button img {
 #theme-toggle {
     position: absolute;
     top: 20px;
-    right: 20px; 
+    right: 20px;
     font-size: 1.8em;
     padding: 0.3em;
     border-radius: 50%;
@@ -86,7 +86,9 @@ button img {
 }
 
 /*desinverte os botoes, imagens dos botoes e o card*/
-.dark-theme button, .dark-theme button image, .dark-theme .carousel div {
+.dark-theme button,
+.dark-theme button image,
+.dark-theme .carousel div {
     filter: invert(1);
 }
 
@@ -98,15 +100,15 @@ button img {
 
     input {
         width: 15em;
-    }    
+    }
 
-    main > div {
+    main>div {
         align-self: center;
         margin-top: 4em;
         flex-wrap: wrap;
     }
-    
-    main > div + div button {
+
+    main>div+div button {
         display: none;
     }
 

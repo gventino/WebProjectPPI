@@ -6,6 +6,7 @@ html {
 }
 
 body {
+    margin: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +14,7 @@ body {
 
 h1 {
     font-weight: bold;
-    font-size: 8em;
+    font-size: 6em;
     margin: 0px;
     margin-top: 0.5em;
 
@@ -26,21 +27,20 @@ main {
     justify-content: space-evenly;
 }
 
-div {
-    margin-top: 2em;
-}
-
 /*pegando container do input e selects*/
-main > div {
+main>div {
+    margin-top: 2em;
     display: flex;
     gap: 1em;
 }
 
 input {
     width: 30em;
-    height: 2.5em;
+    height: 2.0em;
     border-radius: 0.5em;
     border: 1px solid black;
+    padding-left: 1em;
+
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
     font-size: 1.2em;
@@ -59,20 +59,21 @@ select {
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
     font-size: medium;
+    cursor: pointer;
 }
 
-
 /*pegando container que contém o carousel*/
-main > div + div {
+main>div+div {
     display: flex;
     padding: 1em 1em;
     border-radius: 0.5em;
     border: 1px solid black;
     align-items: center;
     gap: 10em;
+    background-color: white;
 }
 
-button {
+main button {
     background-color: white;
     margin: 2em;
     border: 1px solid black;
@@ -116,30 +117,23 @@ button img {
 }
 
 /* --- darkMode --- */
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px; 
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-}
 
 .dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme main>div+div {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+}
+
+.dark-theme main>div+div button {
     filter: invert(1);
 }
 
-/*desinverte os botoes, imagens dos botoes e o card*/
-.dark-theme button, .dark-theme button image, .dark-theme .carousel div {
-    filter: invert(1);
+.dark-theme .carousel div {
+    color: black;
 }
 
 @media all AND (max-width: 1678px) {
@@ -150,15 +144,29 @@ button img {
 
     input {
         width: 15em;
-    }    
+        padding-right: 2.5em;
+    }
 
-    main > div {
+    main>div+div {
+        margin: 1em;
+    }
+
+    .carousel div img {
+        width: 16em;
+        height: 16em;
+    }
+
+    .carousel div {
+        padding: 0.8em;
+    }
+
+    main>div {
         align-self: center;
         margin-top: 4em;
         flex-wrap: wrap;
     }
-    
-    main > div + div button {
+
+    main>div+div button {
         display: none;
     }
 
@@ -181,30 +189,33 @@ button img {
         font-size: 4em;
         text-align: center;
     }
+
     main {
         margin: 0px 1em;
     }
 
     input {
         width: 100%;
-    }
-    
-    select {
-        height: 3em;
-        width: 30%;
+        margin: 0.5em;
     }
 
-    main > div {
+    select {
+        height: 3em;
+        margin: 0.5em;
+        width: 25%;
+    }
+
+    main>div {
         margin-top: 1.5em;
         justify-content: flex-start;
         flex-wrap: wrap;
     }
-    
-    main > div + div {
+
+    main>div+div {
         margin-top: 1.5em;
     }
 
-    main > div + div button {
+    main>div+div button {
         display: none;
     }
 

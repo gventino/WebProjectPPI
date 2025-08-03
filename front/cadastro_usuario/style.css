@@ -9,15 +9,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0px;
 }
 
 h1 {
-    font-size: 8em;
+    font-size: 6em;
     margin: 0px;
 }
 
 h2 {
-    font-size: 6em;
+    font-size: 5em;
     margin: 0px;
 }
 
@@ -25,7 +26,7 @@ main {
     margin: 1em;
     display: flex;
     flex-direction: row;
-    gap: 4em;
+    gap: 6em;
 }
 
 form {
@@ -41,11 +42,16 @@ form {
     font-size: 1.8em;
 }
 
-form > div {
+form>div {
     margin-top: 0.1em;
 }
 
-div {
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+main>div {
     display: flex;
     flex-direction: column;
 }
@@ -56,13 +62,14 @@ input {
     border-radius: 0.5em;
     font-family: 'Lilita One', sans-serif;
     font-weight: 200;
+    padding-left: 0.5em;
 }
 
 input::placeholder {
     font-size: 0.8em;
 }
 
-button {
+form>button {
     align-self: flex-start;
     border: 1px solid black;
     border-radius: 0.5em;
@@ -71,6 +78,11 @@ button {
     font-size: 0.5em;
     padding: 0.5em;
     cursor: pointer;
+}
+
+form>button:hover {
+    transform: scale(1.05);
+    transition: all 0.2s;
 }
 
 /*container da logo*/
@@ -86,40 +98,60 @@ img {
 }
 
 /* --- darkMode --- */
-#theme-toggle {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    background-color: white;
-    cursor: pointer;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-}
 
 .dark-theme {
-    filter: invert(1);
+    background-color: #1a1a1a;
+    color: #ffffff;
 }
 
-.dark-theme .image-container {
-    filter: invert(1);
-}
-
-/* desinverte o form */
 .dark-theme form {
-    filter: invert(1);
+    color: white;
+    background-color: #2d2d2d;
+    border-color: #ffffff;
 }
 
-@media all AND (max-width:955px) {
+.dark-theme form>button {
+    color: white;
+    border-color: #ffffff;
+}
+
+@media all AND (max-width:830px) {
+    h1 {
+        font-size: 5em;
+        margin: 0px;
+        margin-top: 0.5em;
+    }
+
+    h2 {
+        font-size: 3em;
+        margin: 0px;
+        margin-bottom: 1em;
+    }
+
+    main {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    form {
+        gap: 1em;
+        font-size: 2em;
+        margin: 0em 2em;
+    }
+
+    main>div>img {
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+}
+
+@media all AND (max-width:400px) {
     h1 {
         font-size: 3em;
         margin: 0px;
-        margin-top: 2em;
+        margin-top: 1em;
     }
 
     h2 {
@@ -129,7 +161,6 @@ img {
     }
 
     main {
-        margin: 1em;
         flex-direction: column;
         justify-content: center;
         gap: 2em;
@@ -138,19 +169,12 @@ img {
     form {
         gap: 1em;
         font-size: 1.4em;
-        margin: 2em;
+        margin: 0em 2em;
     }
 
-    main > div > img {
+    main>div>img {
         width: 0px;
         height: 0px;
         display: none;
-    }
-
-    #theme-toggle {
-        position: absolute;
-        font-size: 1.4em;
-        top: -36em;
-        right: 1.2em;
     }
 }
