@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql_db
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      # Garante a persistência dos dados
+      - mysql_data:/var/lib/mysql
+      # Mapeia o nosso script de init para o diretório de inicialização do MySQL
+      - ./mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mysql_data:
