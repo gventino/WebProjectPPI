@@ -13,5 +13,6 @@ class AnuncianteService
 {
     public function __construct(
         public AnuncianteDTO $anunciante,
-    ) {}
+    ) {
+    }
 }

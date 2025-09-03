@@ -15,5 +15,6 @@ class AnuncioDTO
         public string $estado,
         public string $cidade,
         public int $idAnunciante,
-    ) {}
+    ) {
+    }
 }
