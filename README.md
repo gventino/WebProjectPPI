@@ -12,7 +12,7 @@ Execute:
 
 `sudo docker compose up -d --build`
 
-O docker compose vai subir dois containers, um para o mysql e um para a aplicacao php. Qualquer ao ser atualizado atualiza o container php_app automaticamente (mapeei com volumes), sendo desnecessario o rebuild manual do container.
+O docker compose vai subir tres containers, um para o mysql, um para a aplicacao php e um para o nginx. Qualquer arquivo a ser atualizado localmente atualiza o container automaticamente (mapeei com volumes), sendo desnecessario o rebuild manual do container.
 
 ### Caso queira usar o bash do container:
 
