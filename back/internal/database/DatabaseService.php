@@ -36,7 +36,10 @@ class DatabaseService
     {
         try {
             $stmt = $this->pdo->prepare($query);
-            return [$stmt, $stmt->execute($args)];
+        return [
+            "stmt" => $stmt, 
+            "success" => $stmt->execute($args)
+          ];
         } catch (Throwable $e) {
             LogService::error("unable to execute query prepare and execute query - {$e->getMessage()}");
             throw $e;
