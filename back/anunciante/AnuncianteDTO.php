@@ -1,4 +1,5 @@
 <?php
+
 class AnuncianteDTO
 {
     public function __construct(
@@ -8,5 +9,6 @@ class AnuncianteDTO
         public string $email,
         public string $senhaHash,
         public string $telefone
-    ) {}
+    ) {
+    }
 }
