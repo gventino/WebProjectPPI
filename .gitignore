@@ -3,3 +3,5 @@
 composer.json
 composer.lock
 vendor/
+.php-cs-fixer.cache 
+.phpactor.json
