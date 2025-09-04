@@ -31,7 +31,8 @@ services:
     env_file:
       - .env
     ports:
-      - "3306:3306"
+    # tive que mudar pq ja tenho um mysql local
+      - "3307:3306"
     volumes:
       # Garante a persistência dos dados
       - mysql_data:/var/lib/mysql
