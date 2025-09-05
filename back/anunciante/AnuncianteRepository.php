@@ -14,10 +14,10 @@ class AnuncianteRepository
     public function register(AnuncianteDTO $anunciante): bool
     {
         $query = <<<SQL
-      INSERT INTO `anunciante` (`nome`, `cpf`, `email`, `senha_hash`, `telefone`)
-        VALUES
-        (:nome, :cpf, :email, :senha_hash, :telefone);
-    SQL;
+          INSERT INTO `anunciante` (`nome`, `cpf`, `email`, `senha_hash`, `telefone`)
+          VALUES
+          (:nome, :cpf, :email, :senha_hash, :telefone);
+        SQL;
 
         $params = [
           "nome" => $anunciante->nome,
@@ -27,22 +27,31 @@ class AnuncianteRepository
           "telefone" => $anunciante->telefone
         ];
 
-        $result = $this->db->prepareExecute($query, $params);
-        return $result->success;
+        try {
+            $result = $this->db->prepareExecute($query, $params);
+            return $result->success;
+        } catch (Throwable $e) {
+            LogService::error("could not register anunciante - {$e->getMessage()}");
+        }
+        return false;
     }
 
     public function getByEmail(string $email): ?AnuncianteDTO
     {
         $query = <<<SQL
-      SELECT * FROM `anunciante` WHERE `email` = :email;
-    SQL;
-        $result = $this->db->prepareExecute($query, ["email" => $email]);
+          SELECT * FROM `anunciante` WHERE `email` = :email;
+        SQL;
 
-        $row = $result->stmt->fetch();
-        if ($row === false) {
-            return null;
+        try {
+            $result = $this->db->prepareExecute($query, ["email" => $email]);
+            $row = $result->stmt->fetch();
+            if (!$row) {
+                return null;
+            }
+            return AnuncianteDTO::anuncianteFromArray($row);
+        } catch (Throwable $e) {
+            LogService::error("could not get anunciante by email - {$e->getMessage()}");
         }
-
-        return AnuncianteDTO::anuncianteFromArray($row);
+        return null;
     }
 }
