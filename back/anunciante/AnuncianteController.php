@@ -40,7 +40,6 @@ switch ($action) {
         echo json_encode($result);
         break;
 
-
     default:
         LogService::error("unkown action at AnuncianteController - {$action}");
         break;
