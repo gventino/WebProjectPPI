@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . "/DatabaseResponseDTO.php";
 require_once __DIR__ . "/../env/EnvService.php";
 require_once __DIR__ . "/../logger/LogService.php";
 
@@ -32,14 +33,14 @@ class DatabaseService
         }
     }
 
-    public function prepareExecute(string $query, array $args = []): array
+    public function prepareExecute(string $query, array $args = []): DatabaseResponseDTO
     {
         try {
             $stmt = $this->pdo->prepare($query);
-        return [
-            "stmt" => $stmt, 
-            "success" => $stmt->execute($args)
-          ];
+            return new DatabaseResponseDTO(
+                success: $stmt->execute($args),
+                stmt: $stmt
+            );
         } catch (Throwable $e) {
             LogService::error("unable to execute query prepare and execute query - {$e->getMessage()}");
             throw $e;

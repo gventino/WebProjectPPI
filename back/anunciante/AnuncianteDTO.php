@@ -1,22 +1,22 @@
 <?php
 
-class AnuncianteDTO
+require_once __DIR__ . "/../messages/MessageObjInterface.php";
+
+class AnuncianteDTO implements MessageObjInterface
 {
-    
     public function __construct(
         public string $nome,
         public string $cpf,
         public string $email,
         public string $senhaHash,
         public string $telefone,
-        public ?int $id = null 
+        public ?int $id = null
     ) {
     }
 
     public static function anuncianteFromArray(array $array): AnuncianteDTO
     {
-        return new self
-        (
+        return new self(
             id: $array["id"],
             nome: $array["nome"],
             cpf: $array["cpf"],
