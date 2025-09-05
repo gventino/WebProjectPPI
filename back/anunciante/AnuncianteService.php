@@ -53,7 +53,7 @@ class AnuncianteService
         );
     }
 
-    public function logout(): array
+    public function logout(): MessageDTO
     {
         // fazer aqueles negocio de destroy e redirect pra algum lugar
         session_start();
@@ -66,12 +66,11 @@ class AnuncianteService
         );
     }
 
-    public function checkSession(): array
+    public function checkSession(): MessageDTO
     {
         session_start();
         $loggedIn = $_SESSION["logged_in"] ?? false;
-        return new MessageDTO(success: true);
+        return new MessageDTO(success: $loggedIn);
     }
 
 }
-
