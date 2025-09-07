@@ -3,7 +3,6 @@
 class AnuncioDTO
 {
     public function __construct(
-        public ?int $id = null,
         public string $marca,
         public string $modelo,
         public int $ano,
@@ -14,7 +13,8 @@ class AnuncioDTO
         public string $dataHora,
         public string $estado,
         public string $cidade,
-        public int $idAnunciante,
+        public ?int $idAnunciante = null,
+        public ?int $id = null,
     ) {
     }
 }

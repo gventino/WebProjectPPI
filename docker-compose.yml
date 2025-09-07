@@ -25,6 +25,7 @@ services:
       - .env
     depends_on:
       - db
+    command: sh -c "chown -R www-data:www-data /app/back/uploads && php-fpm"
   db:
     image: mysql:latest
     container_name: mysql_db

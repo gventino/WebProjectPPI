@@ -3,8 +3,8 @@
 class FotoDTO
 {
     public function __construct(
-        public ?int $idAnuncio,
         public string $nomeArquivoFoto,
+        public ?int $idAnuncio = null,
     ) {
     }
 }

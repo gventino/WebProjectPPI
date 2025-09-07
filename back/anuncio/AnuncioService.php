@@ -12,9 +12,16 @@ class AnuncioService
         $this->repository = new AnuncioRepository();
     }
 
-    public function register(AnuncioDTO $anuncio, FotoDTO $foto): MessageDTO
+    public function register(AnuncioDTO $anuncio, array $fotos): MessageDTO
     {
-        $result = $this->repository->register($anuncio, $foto);
+        session_start();
+        if (!isset($_SESSION["user_id"])) {
+            return new MessageDTO(success: false, message: "O user_id esta faltando na sessao");
+        }
+        $anuncianteId = $_SESSION["user_id"];
+        $anuncio->idAnunciante = $anuncianteId;
+
+        $result = $this->repository->register($anuncio, $fotos);
         return new MessageDTO(success: $result);
     }
 }

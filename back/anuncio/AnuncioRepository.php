@@ -12,7 +12,7 @@ class AnuncioRepository
         $this->service = new DatabaseService();
     }
 
-    public function register(AnuncioDTO $anuncio, FotoDTO $foto): bool
+    public function register(AnuncioDTO $anuncio, array $fotos): bool
     {
         $queryAnuncio = <<<SQL
           INSERT INTO anuncio (marca, modelo, ano, cor, quilometragem, descricao, valor, estado, cidade, id_anunciante)
@@ -37,9 +37,6 @@ class AnuncioRepository
               :nome_arq_foto
           );
         SQL;
-
-        $queries = [$queryAnuncio, $queryFoto];
-
         $paramsAnuncio = [
           "marca" => $anuncio->marca,
           "modelo" => $anuncio->modelo,
@@ -53,18 +50,37 @@ class AnuncioRepository
           "id_anunciante" => $anuncio->idAnunciante
         ];
 
-        $paramsFoto = [
-          "id_anuncio" => $foto->idAnuncio,
-          "nome_arq_foto" => $foto->nomeArquivoFoto,
-        ];
 
-        $args = [$paramsAnuncio, $paramsFoto];
-
+        $pdo = $this->service->pdo;
         try {
-            $response = $this->service->transactionExecute($queries, $args);
-            return $response;
+            $pdo->beginTransaction();
+
+            // insere o anuncio
+            $stmtAnuncio = $pdo->prepare($queryAnuncio);
+            $successAnuncio = $stmtAnuncio->execute($paramsAnuncio);
+            if (!$successAnuncio) {
+                throw new Exception("could not register anuncio");
+            }
+
+            // insere todos as fotos do anuncio
+            $idAnuncio = $pdo->lastInsertId();
+            foreach ($fotos as $foto) {
+                $stmtFoto = $pdo->prepare($queryFoto);
+                $paramsFoto = [
+                  "nome_arq_foto" => $foto->nomeArquivoFoto,
+                  "id_anuncio" => $idAnuncio
+                ];
+                $successFoto = $stmtFoto->execute($paramsFoto);
+                if (!$successFoto) {
+                    throw new Exception("could not register foto at anuncio register flow");
+                }
+            }
+            $pdo->commit();
+
+            return true;
         } catch (Throwable $e) {
             LogService::error("unable to register anuncio and photo - {$e->getMessage()}");
+            $pdo->rollBack();
         }
         return false;
     }
