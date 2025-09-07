@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         announcementsContainer.innerHTML = '<p>Carregando seus anúncios...</p>';
 
         try {
-            const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+            const url = '/../../back/anuncio/AnuncioController.php';
             const options = {
               method: 'POST',
               headers: {

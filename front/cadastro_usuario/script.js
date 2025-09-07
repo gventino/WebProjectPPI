@@ -12,7 +12,7 @@ async function register(event) {
   event.preventDefault();
 
   const formData = new FormData(formElement);
-  const url = 'http://localhost:8080/back/anunciante/AnuncianteController.php';
+  const url = '/../../back/anunciante/AnuncianteController.php';
 
   try {
     const formObject = Object.fromEntries(formData);

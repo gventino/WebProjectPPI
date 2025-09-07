@@ -17,19 +17,22 @@ class DatabaseService
 
     public function __construct()
     {
-        try {
-            $this->env = EnvService::loadEnv();
-        } catch (Throwable $e) {
-            LogService::error("unable to load env vars at DatabaseService - {$e}");
-            throw $e;
-        }
+        $db_host = "sql309.infinityfree.com";
+        $db_username = "if0_39209482";
+        $db_password = "u2craKPDns";
+        $db_name = "if0_39209482_ppi";
+
+        $options = [
+            PDO::ATTR_EMULATE_PREPARES => false, // desativa a execução emulada de prepared statements
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ];
 
         try {
-            $uri = "mysql:host={$this->env["DB_HOST"]}; dbname={$this->env["MYSQL_DATABASE"]}; charset=utf8mb4";
-            $this->pdo = new PDO($uri, $this->env["MYSQL_USER"], $this->env["MYSQL_PASSWORD"], $this->options);
-        } catch (Throwable $e) {
-            LogService::error("unable to connect to Database - {$e->getMessage()}");
-            throw $e;
+            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_username, $db_password, $options);
+            return $pdo;
+        } 
+        catch (Exception $e) {
+            exit('Ocorreu uma falha na conexão com o MySQL: ' . $e->getMessage());
         }
     }
 

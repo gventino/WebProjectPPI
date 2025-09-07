@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS anunciante (
     email VARCHAR(255) NOT NULL UNIQUE,
     senha_hash VARCHAR(255) NOT NULL,
     telefone VARCHAR(20)
-);
+)ENGINE=InnoDB;
 
 -- Tabela de anúncios
 -- Depende de 'anunciante'.
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS anuncio (
     CONSTRAINT fk_anuncio_anunciante
         FOREIGN KEY (id_anunciante) REFERENCES anunciante(id)
         ON DELETE CASCADE -- Se o anunciante for deletado, seus anúncios também serão.
-);
+)ENGINE=InnoDB;
 
 -- Tabela de fotos do anúncio
 -- Depende de 'anuncio'.
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS foto (
     CONSTRAINT fk_foto_anuncio
         FOREIGN KEY (id_anuncio) REFERENCES anuncio(id)
         ON DELETE CASCADE -- Se o anúncio for deletado, suas fotos também serão.
-);
+)ENGINE=InnoDB;
 
 -- Tabela de pessoas interessadas no anúncio
 -- Depende de 'anuncio'.
@@ -58,4 +58,4 @@ CREATE TABLE IF NOT EXISTS interesse (
     CONSTRAINT fk_interesse_anuncio
         FOREIGN KEY (id_anuncio) REFERENCES anuncio(id)
         ON DELETE CASCADE -- Se o anúncio for deletado, o registro de interesse também será.
-);
+)ENGINE=InnoDB;

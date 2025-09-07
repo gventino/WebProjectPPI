@@ -12,7 +12,7 @@ async function register(event) {
     event.preventDefault();
 
     const formData = new FormData(formElement);
-    const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+    const url = '../../back/anuncio/AnuncioController.php';
 
     formData.append('action', 'register');
     formData.append('dataHora', new Date().toISOString());
