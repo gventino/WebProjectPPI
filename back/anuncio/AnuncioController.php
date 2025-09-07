@@ -87,6 +87,7 @@ switch ($action) {
             echo json_encode(
                 new MessageDTO(success: false, message: "Algo deu errado, quantidade divergente de fotos e anuncios.")
             );
+            return;
         }
 
         $pairs = [];
