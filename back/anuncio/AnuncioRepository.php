@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . "/../internal/logger/LogService.php";
 require_once __DIR__ . "/../internal/database/DatabaseService.php";
 require_once __DIR__ . "/../foto/FotoDTO.php";
 
