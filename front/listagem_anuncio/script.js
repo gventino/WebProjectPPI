@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
             const options = {
               method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
               body: JSON.stringify({
                 action: 'listUser'
               })
