@@ -59,11 +59,6 @@ class FotoService
 
     public function getPhotos(array $anuncios): MessageDTO
     {
-        if (!isset($_SESSION["user_id"])) {
-            return new MessageDTO(success: false, message: "O user_id esta faltando na sessao");
-        }
-        $idAnunciante = $_SESSION["user_id"];
-
         try {
             $photos = $this->repository->getPhotos($anuncios);
             return new MessageDTO(success: true, obj: $photos);
