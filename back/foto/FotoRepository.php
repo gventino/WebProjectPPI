@@ -29,7 +29,11 @@ class FotoRepository
 
             $result = $this->service->prepareExecute($query, $params);
             $row = $result->stmt->fetch();
-            $photos[] = $row["nome_arq_foto"];
+            if ($row !== false && isset($row["nome_arq_foto"])) {
+                $photos[] = $row["nome_arq_foto"];
+            } else {
+                $photos[] = null;
+            }
         }
         return $photos;
     }
