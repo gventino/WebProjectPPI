@@ -9,9 +9,11 @@ require_once __DIR__ . "/../messages/MessageDTO.php";
 
 header('Content-Type: application/json; charset=utf-8');
 
-$action = $_POST['action'] ?? "empty";
 $anuncioService = new AnuncioService();
 $fotoService = new FotoService();
+
+$input = json_decode(file_get_contents('php://input'), true) ?? [];
+$action = $input['action'] ?? $_POST['action'] ?? "empty";
 
 function verifyFields(): bool
 {
@@ -72,6 +74,39 @@ switch ($action) {
 
             echo json_encode(new MessageDTO(message: $e->getMessage(), success: false));
         }
+        break;
+
+    case 'listUser':
+        $messageAnuncioService = $anuncioService->listUser();
+        $anuncios = $messageAnuncioService->obj;
+
+        $mensagemFotoService = $fotoService->getPhotos($anuncios);
+        $fotos = $mensagemFotoService->obj;
+
+        if (count($anuncios) != count($fotos)) {
+            echo json_encode(
+                new MessageDTO(success: false, message: "Algo deu errado, quantidade divergente de fotos e anuncios.")
+            );
+            return;
+        }
+
+        $pairs = [];
+        $qty = count($anuncios);
+        for ($i = 0; $i < $qty; $i++) {
+            $pair = [
+              "anuncio" => $anuncios[$i],
+              "foto" => $fotos[$i],
+            ];
+            $pairs[] = $pair;
+        }
+
+        echo json_encode(
+            new MessageDTO(
+                success: true,
+                message: "Listagem bem sucedida.",
+                obj: $pairs
+            )
+        );
         break;
 
     default:
