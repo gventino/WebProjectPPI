@@ -7,8 +7,8 @@ class AnuncioService
 {
     public AnuncioRepository $repository;
 
-    public function __construct(
-    ) {
+    public function __construct()
+    {
         $this->repository = new AnuncioRepository();
     }
 
@@ -22,6 +22,11 @@ class AnuncioService
         $anuncio->idAnunciante = $anuncianteId;
 
         $result = $this->repository->register($anuncio, $fotos);
-        return new MessageDTO(success: $result);
+
+        if (!$result) {
+            return new MessageDTO(success: false, message: "Erro ao registrar o anúncio no banco de dados.");
+        }
+
+        return new MessageDTO(success: true, message: "Anúncio registrado com sucesso!");
     }
 }
