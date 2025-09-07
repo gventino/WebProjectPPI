@@ -58,7 +58,7 @@ class DatabaseService
         try {
             $this->pdo->beginTransaction();
             $qty = count($queries);
-            for ($i = 0; $i <= $qty; $i++) {
+            for ($i = 0; $i < $qty; $i++) {
                 $stmt = $this->pdo->prepare($queries[$i]);
                 $success = $stmt->execute($args[$i]);
                 if (!$success) {
