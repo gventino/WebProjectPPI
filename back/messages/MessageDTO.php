@@ -5,7 +5,7 @@ class MessageDTO
     public function __construct(
         public bool $success,
         public ?string $message = "",
-        public ?MessageObjInterface $obj = null,
+        public MessageObjInterface | array | null $obj = null,
     ) {
     }
 }

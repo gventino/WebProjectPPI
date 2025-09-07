@@ -85,4 +85,39 @@ class AnuncioRepository
         }
         return false;
     }
+
+    public function listUser(int $idAnunciante): array
+    {
+        $query = <<<SQL
+          SELECT * FROM anuncio
+            WHERE id_anunciante = :id_anunciante;
+        SQL;
+
+        $params = [
+          "id_anunciante" => $idAnunciante
+        ];
+
+        $result = $this->service->prepareExecute($query, $params);
+        if (!$result->success) {
+            return [];
+        }
+
+        $response = [];
+        while ($row = $result->stmt->fetch()) {
+            $response[] = new AnuncioDTO(
+                id: $row["id"],
+                marca: $row["marca"],
+                modelo: $row["modelo"],
+                ano: $row["ano"],
+                cor: $row["cor"],
+                quilometragem: $row["quilometragem"],
+                descricao: $row["descricao"],
+                valor: $row["valor"],
+                dataHora: $row["data_hora"],
+                estado: $row["estado"],
+                cidade: $row["cidade"]
+            );
+        }
+        return $response;
+    }
 }

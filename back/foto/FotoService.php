@@ -2,14 +2,17 @@
 
 require_once __DIR__ . "/../internal/logger/LogService.php";
 require_once __DIR__ . "/../messages/MessageDTO.php";
+require_once __DIR__ . "/FotoRepository.php";
 
 class FotoService
 {
     private string $uploadDir;
+    private FotoRepository $repository;
 
     public function __construct()
     {
         $this->uploadDir = __DIR__ . '/../uploads/';
+        $this->repository = new FotoRepository();
     }
 
     public function savePhotos(array $files): array
@@ -51,6 +54,21 @@ class FotoService
             if (file_exists($fileToDelete)) {
                 unlink($fileToDelete);
             }
+        }
+    }
+
+    public function getPhotos(array $anuncios): MessageDTO
+    {
+        if (!isset($_SESSION["user_id"])) {
+            return new MessageDTO(success: false, message: "O user_id esta faltando na sessao");
+        }
+        $idAnunciante = $_SESSION["user_id"];
+
+        try {
+            $photos = $this->repository->getPhotos($anuncios);
+            return new MessageDTO(success: true, obj: $photos);
+        } catch (Throwable $e) {
+            return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
         }
     }
 }

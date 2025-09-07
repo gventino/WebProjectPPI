@@ -51,57 +51,7 @@
         <h2>LISTAGEM DE ANÚNCIOS</h2>
 
         <div class="announcements-container">
-            <!-- Anuncio 1 -->
-            <div class="announcement-card">
-                <div class="announcement-image">
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto do veículo">
-                </div>
-                <div class="announcement-info">
-                    <h3>Honda Civic</h3>
-                    <p class="model">Civic EXL</p>
-                    <p class="year">2020</p>
-                    <div class="announcement-actions">
-                        <button class="action-btn view-btn" onclick="viewDetails(1)">Ver Detalhes</button>
-                        <button class="action-btn interests-btn" onclick="viewInterests(1)"> Ver Interesses</button>
-                        <button class="action-btn delete-btn">Excluir</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Anuncio 2 -->
-            <div class="announcement-card">
-                <div class="announcement-image">
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto do veículo">
-                </div>
-                <div class="announcement-info">
-                    <h3>Toyota Corolla</h3>
-                    <p class="model">Corolla XEi PRATA</p>
-                    <p class="year">2019</p>
-                    <div class="announcement-actions">
-                        <button class="action-btn view-btn" onclick="viewDetails(2)">Ver Detalhes</button>
-                        <button class="action-btn interests-btn" onclick="viewInterests(2)">Ver Interesses</button>
-                        <button class="action-btn delete-btn">Excluir</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Anuncio 3 -->
-            <div class="announcement-card">
-                <div class="announcement-image">
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="Foto do veículo">
-                </div>
-                <div class="announcement-info">
-                    <h3>Ford Fiesta</h3>
-                    <p class="model">Fiesta Sedan</p>
-                    <p class="year">2021</p>
-                    <div class="announcement-actions">
-                        <button class="action-btn view-btn" onclick="viewDetails(3)">Ver Detalhes</button>
-                        <button class="action-btn interests-btn" onclick="viewInterests(3)">Ver Interesses</button>
-                        <button class="action-btn delete-btn">Excluir</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       </div>
 
         <div class="navigation-buttons">
             <button onclick="location.href='../principal_interna/index.html'" class="nav-btn">Voltar</button>
@@ -111,17 +61,6 @@
 
     <script src="script.js"></script>
     <script src="../header.js"></script>
-    <script>
-        function viewDetails(announcementId) {
-            // depois vamos passar o id do anuncio para a pagina de detalhes e interesses
-            // location.href = `../detalhes_anuncio/index.html?id=${announcementId}`;
-            location.href = `../detalhes_anuncio/index.html`;
-        }
-
-        function viewInterests(announcementId) {
-            location.href = `../listagem_interesse/index.html`;
-        }
-    </script>
 </body>
 
 </html>
