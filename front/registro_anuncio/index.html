@@ -48,7 +48,7 @@
     <h1>REGISTRE SEU ANÚNCIO!</h1>
 
     <main>
-        <form action="">
+        <form action="" enctype="multipart/form-data">
             <span>
                 <div>
                     <label for="marca">Marca:</label>
@@ -69,12 +69,12 @@
                     <input type="text" name="cor" required placeholder="Cinza">
                 </div>
                 <div>
-                    <label for="kms">Quilometragem (em Km):</label>
-                    <input type="number" min="0" name="kms" required placeholder="11900">
+                    <label for="quilometragem">Quilometragem (em Km):</label>
+                    <input type="number" min="0" name="quilometragem" required placeholder="11900">
                 </div>
                 <div>
-                    <label for="desc">Descrição:</label>
-                    <textarea id="desc" name="desc" rows="6" cols="50">Descrição</textarea>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="6" cols="50">Descrição</textarea>
                 </div>
                 <div>
                     <label for="valor">Valor (em R$):</label>
@@ -104,10 +104,10 @@
                 </div>
                 <div>
                     <label for="fotoE">Uma foto extra do veículo (opcional):</label>
-                    <input type="file" name="fotoE" accept="image/*" required>
+                    <input type="file" name="fotoE" accept="image/*" >
                 </div>
                 <!--trocar aqui pra type submit dps-->
-                <button type="button">Enviar</button>
+                <button type="submit">Enviar</button>
             </span>
         </form>
     </main>
