@@ -15,26 +15,37 @@ class FotoRepository
     // traz a primeira foto de cada anuncio
     public function getPhotos(array $anuncios): array
     {
+        $idsAnuncios = array_map(fn($anuncio) => $anuncio->id, $anuncios);
+
+        $inClause = implode(',', array_fill(0, count($idsAnuncios), '?'));
+
         $query = <<<SQL
-        SELECT * FROM foto
-          WHERE id_anuncio = :id_anuncio
-          LIMIT 1; 
+          SELECT
+              f.id_anuncio,
+              f.nome_arq_foto
+          FROM
+              foto f
+          INNER JOIN (
+              SELECT
+                  id_anuncio,
+                  MIN(id) AS primeira_foto_id
+              FROM
+                  foto
+              WHERE
+                  id_anuncio IN ($inClause)
+              GROUP BY
+                  id_anuncio
+          ) AS primeiras_fotos ON f.id = primeiras_fotos.primeira_foto_id;
         SQL;
+        $result = $this->service->prepareExecute($query, $idsAnuncios);
 
-        $photos = [];
-        foreach ($anuncios as $anuncio) {
-            $params = [
-              "id_anuncio" => $anuncio->id
-            ];
-
-            $result = $this->service->prepareExecute($query, $params);
-            $row = $result->stmt->fetch();
-            if ($row !== false && isset($row["nome_arq_foto"])) {
-                $photos[] = $row["nome_arq_foto"];
-            } else {
-                $photos[] = null;
-            }
+        $photosMap = [];
+        $rows = $result->stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rows as $row) {
+            $idAnuncio = $row['id_anuncio'];
+            $photosMap[$idAnuncio] = $row['nome_arq_foto'];
         }
-        return $photos;
-    }
+
+        return $photosMap;
+  }
 }

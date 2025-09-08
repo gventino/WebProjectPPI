@@ -90,21 +90,18 @@ switch ($action) {
             return;
         }
 
-        $pairs = [];
-        $qty = count($anuncios);
-        for ($i = 0; $i < $qty; $i++) {
-            $pair = [
-              "anuncio" => $anuncios[$i],
-              "foto" => $fotos[$i],
-            ];
-            $pairs[] = $pair;
+        $anunciosCompletos = [];
+        foreach ($anuncios as $anuncio) {
+            $anuncioArray = (array) $anuncio;
+            $anuncioArray['foto'] = $fotos[$anuncio->id] ?? null;
+            $anunciosCompletos[] = $anuncioArray;
         }
 
         echo json_encode(
             new MessageDTO(
                 success: true,
-                message: "Listagem bem sucedida.",
-                obj: $pairs
+                message: "listagem bem sucedida.",
+                obj: $anunciosCompletos
             )
         );
         break;
