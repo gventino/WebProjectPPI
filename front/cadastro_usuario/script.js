@@ -12,7 +12,7 @@ async function register(event) {
   event.preventDefault();
 
   const formData = new FormData(formElement);
-  const url = 'http://localhost:8080/back/anunciante/AnuncianteController.php';
+  const url = '/back/anunciante/AnuncianteController.php';
 
   try {
     const formObject = Object.fromEntries(formData);
@@ -27,12 +27,13 @@ async function register(event) {
     };
     const response = await fetch(url, options);
 
-    const data = await response.text();
-    if (data === "true") {
+    const data = await response.json();
+    if (response.ok && data.success) {
       alert("Cadastrado com sucesso!");
     } else {
-      alert("Ocorreu algum erro no cadastro!");
-      throw new Error(data);
+      const msg = data && data.message ? data.message : "Ocorreu algum erro no cadastro!";
+      alert(msg);
+      throw new Error(msg);
     }
   } catch (error) {
     console.error(`Error submiting form to register - ${error}`)
