@@ -34,11 +34,11 @@ $action = $plainObject->action ?? "empty";
 switch ($action) {
     case 'register':
         $anunciante = new AnuncianteDTO(
-            nome: $plainObject->nome,
-            cpf: $plainObject->cpf,
-            email: $plainObject->email,
+            nome: htmlspecialchars($plainObject->nome),
+            cpf: htmlspecialchars($plainObject->cpf),
+            email: htmlspecialchars($plainObject->email),
             senhaHash: $plainObject->senha,
-            telefone: $plainObject->telefone,
+            telefone: htmlspecialchars($plainObject->telefone),
             id: null
         );
         $result = $service->register($anunciante);

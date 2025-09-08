@@ -40,16 +40,16 @@ switch ($action) {
             $savedFileNames = $fotoService->savePhotos($_FILES);
 
             $anuncio = new AnuncioDTO(
-                marca: $_POST['marca'],
-                modelo: $_POST['modelo'],
+                marca: htmlspecialchars($_POST['marca']),
+                modelo: htmlspecialchars($_POST['modelo']),
                 ano: $_POST['ano'],
-                cor: $_POST['cor'],
+                cor: htmlspecialchars($_POST['cor']),
                 quilometragem: $_POST['quilometragem'],
-                descricao: $_POST['descricao'],
+                descricao: htmlspecialchars($_POST['descricao']),
                 valor: $_POST['valor'],
                 dataHora: $_POST['dataHora'],
-                estado: $_POST['estado'],
-                cidade: $_POST['cidade']
+                estado: htmlspecialchars($_POST['estado']),
+                cidade: htmlspecialchars($_POST['cidade'])
             );
 
             $fotos = [];
