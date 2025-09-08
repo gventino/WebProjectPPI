@@ -25,3 +25,7 @@ Foi configurado um container com nginx para servir as paginas html. Para acessar
 `http://localhost:8080/front/...`
 
 Depois podemos reconfigurar o nginx para mapear sem o `/front/...`, e mapear direto a pagina inicial.
+
+### Para acessar o mysql:
+
+`docker exec -it mysql_db mysql -u user -p`

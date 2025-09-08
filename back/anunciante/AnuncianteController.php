@@ -3,14 +3,34 @@
 require_once __DIR__ . "/../internal/logger/LogService.php";
 require_once __DIR__ . "/AnuncianteService.php";
 require_once __DIR__ . "/AnuncianteDTO.php";
+require_once __DIR__ . "/../messages/MessageDTO.php";
 
 header('Content-Type: application/json; charset=utf-8');
+
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$service = new AnuncianteService();
+
+if ($method === 'GET') {
+    $action = $_GET['action'] ?? 'empty';
+    switch ($action) {
+        case 'checkSession':
+            $result = $service->checkSession();
+            http_response_code($result->success ? 200 : 401);
+            echo json_encode($result);
+            break;
+        default:
+            LogService::error("unkown action at AnuncianteController (GET) - {$action}");
+            http_response_code(404);
+            echo json_encode(new MessageDTO(success: false, message: "Action desconhecida - {$action}"));
+            break;
+    }
+    exit;
+}
 
 $stringJSON = file_get_contents('php://input');
 $plainObject = json_decode($stringJSON);
 
 $action = $plainObject->action ?? "empty";
-$service = new AnuncianteService();
 switch ($action) {
     case 'register':
         $anunciante = new AnuncianteDTO(
@@ -22,25 +42,25 @@ switch ($action) {
             id: null
         );
         $result = $service->register($anunciante);
-        echo json_encode($result->success);
+        http_response_code($result->success ? 201 : 400);
+        echo json_encode($result);
         break;
 
     case 'login':
         $result = $service->login($plainObject->email, $plainObject->senha);
+        http_response_code($result->success ? 200 : 401);
         echo json_encode($result);
         break;
 
     case 'logout':
         $result = $service->logout();
-        echo json_encode($result);
-        break;
-
-    case 'checkSession':
-        $result = $service->checkSession();
+        http_response_code($result->success ? 200 : 400);
         echo json_encode($result);
         break;
 
     default:
         LogService::error("unkown action at AnuncianteController - {$action}");
+        http_response_code(404);
+        echo json_encode(new MessageDTO(success: false, message: "Action desconhecida - {$action}"));
         break;
 }

@@ -30,10 +30,23 @@ class AnuncianteRepository
         try {
             $result = $this->db->prepareExecute($query, $params);
             return $result->success;
+        } catch (PDOException $e) {
+            $message = $e->getMessage();
+            $sqlState = $e->getCode();
+            if ($sqlState === '23000') //23000 - Integrity constraint violation
+             { 
+              if (str_contains($message, 'cpf')) {
+                    throw new Exception('CPF ja cadastrado.');
+                }
+                if (str_contains($message, 'email')) {
+                    throw new Exception('E-mail ja cadastrado.');
+                }
+                throw new Exception('Dados ja cadastrados.');
+            }
+            throw $e;
         } catch (Throwable $e) {
-            LogService::error("could not register anunciante - {$e->getMessage()}");
+            throw $e;
         }
-        return false;
     }
 
     public function getByEmail(string $email): ?AnuncianteDTO

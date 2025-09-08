@@ -16,9 +16,14 @@ class AnuncianteService
     {
 
         $anunciante->senhaHash = password_hash($anunciante->senhaHash, PASSWORD_DEFAULT);
-        $result = $this->repository->register($anunciante);
-
-        return new MessageDTO(success: $result);
+        try {
+            $result = $this->repository->register($anunciante);
+            return new MessageDTO(success: $result, message: $result ? "" : "Não foi possível cadastrar o anunciante.");
+        } catch (Exception $e) {
+            return new MessageDTO(success: false, message: $e->getMessage());
+        } catch (Throwable $e) {
+            return new MessageDTO(success: false, message: "Erro ao cadastrar anunciante.");
+        }
     }
 
     public function login(string $email, string $senha): MessageDTO
@@ -55,7 +60,6 @@ class AnuncianteService
 
     public function logout(): MessageDTO
     {
-        // fazer aqueles negocio de destroy e redirect pra algum lugar
         session_start();
         session_unset();
         session_destroy();
@@ -70,7 +74,9 @@ class AnuncianteService
     {
         session_start();
         $loggedIn = $_SESSION["logged_in"] ?? false;
-        return new MessageDTO(success: $loggedIn);
+        $name = $_SESSION["user_name"] ?? null;
+        $email = $_SESSION["user_email"] ?? null;
+        return new MessageDTO(success: $loggedIn, obj: ["name" => $name, "email" => $email]);
     }
 
 }

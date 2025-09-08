@@ -63,6 +63,7 @@ switch ($action) {
                 throw new Exception($result->message);
             }
 
+            http_response_code(201);
             echo json_encode($result);
 
         } catch (Exception $e) {
@@ -72,18 +73,26 @@ switch ($action) {
                 $fotoService->deletePhotos($savedFileNames);
             }
 
+            http_response_code(400);
             echo json_encode(new MessageDTO(message: $e->getMessage(), success: false));
         }
         break;
 
     case 'listUser':
         $messageAnuncioService = $anuncioService->listUser();
+        if (!$messageAnuncioService->success) {
+            http_response_code(401);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
         $anuncios = $messageAnuncioService->obj;
 
         $mensagemFotoService = $fotoService->getPhotos($anuncios);
         $fotos = $mensagemFotoService->obj;
 
         if (count($anuncios) != count($fotos)) {
+            http_response_code(500);
             echo json_encode(
                 new MessageDTO(success: false, message: "Algo deu errado, quantidade divergente de fotos e anuncios.")
             );
@@ -97,6 +106,7 @@ switch ($action) {
             $anunciosCompletos[] = $anuncioArray;
         }
 
+        http_response_code(200);
         echo json_encode(
             new MessageDTO(
                 success: true,
@@ -108,6 +118,7 @@ switch ($action) {
 
     default:
         LogService::error("unkown action at AnuncioController - {$action}");
+        http_response_code(404);
         echo json_encode(new MessageDTO(message: "Action desconhecida - {$action}", success: false));
         break;
 }
