@@ -20,11 +20,11 @@ class AnuncianteRepository
         SQL;
 
         $params = [
-          "nome" => $anunciante->nome,
-          "cpf" => $anunciante->cpf,
-          "email" => $anunciante->email,
-          "senha_hash" => $anunciante->senhaHash,
-          "telefone" => $anunciante->telefone
+          $anunciante->nome,
+          $anunciante->cpf,
+          $anunciante->email,
+          $anunciante->senhaHash,
+          $anunciante->telefone
         ];
 
         try {

@@ -6,14 +6,7 @@ require_once __DIR__ . "/../logger/LogService.php";
 
 class DatabaseService
 {
-    public array $env;
-
     public PDO $pdo;
-
-    private array $options = [
-      PDO::ATTR_EMULATE_PREPARES => false,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ];
 
     public function __construct()
     {
@@ -28,15 +21,15 @@ class DatabaseService
         ];
 
         try {
-            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_username, $db_password, $options);
-            return $pdo;
+            $this->pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_username, $db_password, $options);
+            return $this->pdo;
         } 
         catch (Exception $e) {
             exit('Ocorreu uma falha na conexão com o MySQL: ' . $e->getMessage());
         }
     }
 
-    public function prepareExecute(string $query, array $args = []): DatabaseResponseDTO
+    public function prepareExecute(string $query, array $args): DatabaseResponseDTO
     {
         try {
             $stmt = $this->pdo->prepare($query);
