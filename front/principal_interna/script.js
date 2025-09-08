@@ -7,19 +7,12 @@ themeToggleButton.addEventListener('click', () => {
 });
 
 (async function loadWelcome() {
-    try {
-        const response = await fetch('../../back/anunciante/AnuncianteController.php?action=checkSession', {
-            method: 'GET'
-        });
-        const result = await response.json();
-        const nameElem = document.getElementById('welcome-name');
-        if (response.ok && result.success && result.obj && result.obj.name) {
-            nameElem.textContent = `Olá, ${result.obj.name}!`;
-        } else {
-            nameElem.textContent = '';
-        }
-    } catch (_) {
-        const nameElem = document.getElementById('welcome-name');
+    const sessionResult = await checkSession();
+    const nameElem = document.getElementById('welcome-name');
+    
+    if (sessionResult.success && sessionResult.user && sessionResult.user.name) {
+        nameElem.textContent = `Olá, ${sessionResult.user.name}!`;
+    } else {
         nameElem.textContent = '';
     }
 })();
