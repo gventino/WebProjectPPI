@@ -116,6 +116,39 @@ switch ($action) {
         );
         break;
 
+  case 'delete':
+      $anuncioId = $input["anuncioId"] ?? "";
+      if($anuncioId == ""){
+        http_response_code(500);
+        echo json_encode(
+            new MessageDTO(
+              success: false,
+              message: "id de anuncio não incluso no payload",
+            )
+          );
+        break;
+      }
+
+      $fotosSuccess = $fotoService->deletePhotosByAnuncioId($anuncioId);
+      if (!$fotosSuccess) {
+        http_response_code(401);
+        echo json_encode(
+          new MessageDTO(
+            success: false,
+            message: "O servidor não conseguiu deletar os arquivos das fotos."
+          )
+        );
+      }
+
+      $mensagemService = $anuncioService->delete($anuncioId); 
+      if (!$mensagemService->success) {
+        http_response_code(401);
+        echo json_encode($mensagemService);
+      }
+      
+      http_response_code(200);
+      echo json_encode($mensagemService);
+      break;
     default:
         LogService::error("unkown action at AnuncioController - {$action}");
         http_response_code(404);

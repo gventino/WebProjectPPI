@@ -47,4 +47,25 @@ class AnuncioService
             return new MessageDTO(success: false, message: "Erro ao listar anuncios.");
         }
     }
+
+  public function delete(int $anuncioId): MessageDTO 
+  {
+    try {
+      $success = $this->repository->delete($anuncioId);
+      if(!$success){
+        throw Exception("Could not delete anuncio and foto with anuncioId = $anuncioId");
+      }
+
+      return new MessageDTO(
+        success: true,
+        message: "Anuncio e foto deletados com sucesso"
+      );  
+    } catch(Throwable $e) {
+      $errorMessage = $e->getMessage();
+      return new MessageDTO(
+        success: false,
+        message: "Erro ao deletar anuncio e foto - $errorMessage"
+      );
+    }
+  }
 }

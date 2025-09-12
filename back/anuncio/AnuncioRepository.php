@@ -120,4 +120,24 @@ class AnuncioRepository
         }
         return $response;
     }
+
+    public function delete(int $anuncioId): bool
+    {
+        // foto tem on delete cascade, ent se apagar o anuncio o db apaga a foto automatico!
+        $query = <<<SQL
+          DELETE FROM anuncio
+            WHERE id = ?;
+        SQL;
+        
+        try {
+          $response = $this->service->prepareExecute($query, [$anuncioId]);
+          if (!$response->success){
+            throw new Exception("Fail to delete anuncio and foto with anuncioId = $anuncioId");
+          }
+          return true;
+
+        } catch(Throwable $e) {
+          throw $e;
+        }
+    }
 }
