@@ -129,9 +129,15 @@ switch ($action) {
         break;
       }
 
+      $isOwnerMessage = $anuncioService->isOwner($anuncioId);
+      if (!$isOwnerMessage->success){
+        http_response_code(401);
+        echo json_encode($isOwnerMessage);
+      }
+
       $fotosSuccess = $fotoService->deletePhotosByAnuncioId($anuncioId);
       if (!$fotosSuccess) {
-        http_response_code(401);
+        http_response_code(500);
         echo json_encode(
           new MessageDTO(
             success: false,
@@ -143,7 +149,7 @@ switch ($action) {
 
       $mensagemService = $anuncioService->delete($anuncioId); 
       if (!$mensagemService->success) {
-        http_response_code(401);
+        http_response_code(500);
         echo json_encode($mensagemService);
       }
       

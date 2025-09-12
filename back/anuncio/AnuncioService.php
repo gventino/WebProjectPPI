@@ -48,6 +48,34 @@ class AnuncioService
         }
     }
 
+
+  public function isOwner(int $anuncioId): MessageDTO
+  {
+    session_start();
+    if (!isset($_SESSION["user_id"])) {
+        return new MessageDTO(success: false, message: "O user_id esta faltando na sessao");
+    }
+    $anuncianteId = $_SESSION["user_id"];
+
+    try {
+      $success = $this->repository->isOwner($anuncianteId, $anuncioId);
+      if (!$success) {
+        return new MessageDTO(
+          success: false,
+          message: "O usuário não é dono do anuncio que está tentando deletar"
+        );
+      } 
+      return new MessageDTO(
+        success: true,
+      );
+    } catch(Throwable $e) {
+      return new MessageDTO(
+        success: false,
+        message: "Erro ao verificar posse do anuncio - {$e->getMessage()}"
+      );
+    }
+  }
+
   public function delete(int $anuncioId): MessageDTO 
   {
     try {

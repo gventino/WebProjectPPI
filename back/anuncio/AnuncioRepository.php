@@ -140,4 +140,28 @@ class AnuncioRepository
           throw $e;
         }
     }
+
+    public function isOwner(int $anuncianteId, int $anuncioId): bool {
+      $query = <<<SQL
+        SELECT * FROM anuncio
+          WHERE id = :id_anuncio
+          AND id_anunciante = :id_anunciante;
+      SQL;
+
+      $params = [
+        "id_anuncio" => $anuncioId,
+        "id_anunciante" => $anuncianteId
+      ];
+
+      try {
+        $response = $this->service->prepareExecute($query, $params);
+        if (!$response->success){
+            throw new Exception("Could not verify ownership for anuncio $anuncioId and anunciante $anuncianteId");
+        }
+        return count($response->stmt->fetchAll()) > 0;
+      } catch(Throwable $e) {
+        throw $e;
+      }
+    }
+
 }
