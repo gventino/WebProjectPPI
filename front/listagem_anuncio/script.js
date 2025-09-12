@@ -70,6 +70,9 @@ async function excluirAnuncio(anuncioId) {
   if (confirm('Tem certeza que deseja excluir este anúncio?')) {
     const options = {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
     };
     let response = await fetch(`http://localhost:8080/back/anuncio/AnuncioController.php`, options);
