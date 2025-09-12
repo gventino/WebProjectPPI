@@ -138,6 +138,7 @@ switch ($action) {
             message: "O servidor não conseguiu deletar os arquivos das fotos."
           )
         );
+        break;
       }
 
       $mensagemService = $anuncioService->delete($anuncioId); 
