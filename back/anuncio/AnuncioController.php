@@ -133,6 +133,7 @@ switch ($action) {
       if (!$isOwnerMessage->success){
         http_response_code(401);
         echo json_encode($isOwnerMessage);
+        break;
       }
 
       $fotosSuccess = $fotoService->deletePhotosByAnuncioId($anuncioId);
@@ -151,6 +152,7 @@ switch ($action) {
       if (!$mensagemService->success) {
         http_response_code(500);
         echo json_encode($mensagemService);
+        break;
       }
       
       http_response_code(200);
