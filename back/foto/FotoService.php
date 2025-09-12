@@ -47,23 +47,34 @@ class FotoService
         return $savedFileNames;
     }
 
-    public function deletePhotos(array $filenames): void
+    public function deletePhotosByAnuncioId(int $anuncioId): bool 
     {
-        foreach ($filenames as $filename) {
-            $fileToDelete = $this->uploadDir . $filename;
-            if (file_exists($fileToDelete)) {
-                unlink($fileToDelete);
-            }
-        }
-    }
+          try{
+            $filenames = $this->repository->getFotosByAnuncioId($anuncioId);
+            $this->deletePhotos($filenames);
+            return true;
+          } catch(Throwable $e) {
+            return false;
+          }
+      }
 
-    public function getPhotos(array $anuncios): MessageDTO
-    {
-        try {
-            $photos = $this->repository->getPhotos($anuncios);
-            return new MessageDTO(success: true, obj: $photos);
-        } catch (Throwable $e) {
-            return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
-        }
-    }
+      public  function deletePhotos(array $filenames): void
+      {
+          foreach ($filenames as $filename) {
+              $fileToDelete = $this->uploadDir . $filename;
+              if (file_exists($fileToDelete)) {
+                  unlink($fileToDelete);
+              }
+          }
+      }
+
+      public function getPhotos(array $anuncios): MessageDTO
+      {
+          try {
+              $photos = $this->repository->getPhotos($anuncios);
+              return new MessageDTO(success: true, obj: $photos);
+          } catch (Throwable $e) {
+              return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
+          }
+      }
 }

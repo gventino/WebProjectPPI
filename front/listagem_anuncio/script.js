@@ -66,12 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
   carregarAnuncios();
 });
 
-function excluirAnuncio(announcementId) {
+async function excluirAnuncio(anuncioId) {
   if (confirm('Tem certeza que deseja excluir este anúncio?')) {
-    console.log(`Excluindo anúncio com ID: ${announcementId}`);
-    // Exemplo: fetch(`api/excluir-anuncio.php?id=${announcementId}`, { method: 'DELETE' })
-    // .then(...)
-    // Após excluir, você pode recarregar a lista ou remover o card da tela.
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
+    };
+    let response = await fetch(`http://localhost:8080/back/anuncio/AnuncioController.php`, options);
+    console.log(await response.json());
+    window.location.reload();
   }
 }
 
