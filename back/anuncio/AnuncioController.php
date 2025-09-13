@@ -137,7 +137,25 @@ switch ($action) {
         break;
       }
 
-      $fotosSuccess = $fotoService->deletePhotosByAnuncioId($anuncioId);
+      $filepaths = $fotoService->getPhotosByAnuncioId($anuncioId);
+      if(count($filepaths) == 0){
+        http_response_code(500);
+        echo json_encode(
+          new MessageDTO(
+            success: false,
+            message: "O servidor falhou em encontrar o path das fotos no db."
+          )
+        );
+      }
+
+      $mensagemService = $anuncioService->delete($anuncioId); 
+      if (!$mensagemService->success) {
+        http_response_code(500);
+        echo json_encode($mensagemService);
+        break;
+      }
+
+      $fotosSuccess = $fotoService->deletePhotos($filepaths);
       if (!$fotosSuccess) {
         http_response_code(500);
         echo json_encode(
@@ -147,15 +165,8 @@ switch ($action) {
           )
         );
         break;
-      }
+      }  
 
-      $mensagemService = $anuncioService->delete($anuncioId); 
-      if (!$mensagemService->success) {
-        http_response_code(500);
-        echo json_encode($mensagemService);
-        break;
-      }
-      
       http_response_code(200);
       echo json_encode($mensagemService);
       break;
