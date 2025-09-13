@@ -18,6 +18,5 @@ class AnuncioDTO
         public ?string $anuncianteNome = null,
         public ?string $anuncianteTelefone = null,
         public ?string $anuncianteEmail = null,
-    ) {
-    }
+    ) {}
 }

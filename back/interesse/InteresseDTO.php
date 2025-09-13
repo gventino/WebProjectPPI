@@ -9,6 +9,5 @@ class InteresseDTO
         public string $mensagem,
         public string $dataHora,
         public int $idAnuncio,
-    ) {
-    }
+    ) {}
 }

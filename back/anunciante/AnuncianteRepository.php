@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../internal/database/DatabaseService.php";
+require_once __DIR__ . '/../internal/database/DatabaseService.php';
 
 class AnuncianteRepository
 {
@@ -14,17 +14,17 @@ class AnuncianteRepository
     public function register(AnuncianteDTO $anunciante): bool
     {
         $query = <<<SQL
-          INSERT INTO `anunciante` (`nome`, `cpf`, `email`, `senha_hash`, `telefone`)
-          VALUES
-          (:nome, :cpf, :email, :senha_hash, :telefone);
-        SQL;
+              INSERT INTO `anunciante` (`nome`, `cpf`, `email`, `senha_hash`, `telefone`)
+              VALUES
+              (:nome, :cpf, :email, :senha_hash, :telefone);
+            SQL;
 
         $params = [
-          "nome" => $anunciante->nome,
-          "cpf" => $anunciante->cpf,
-          "email" => $anunciante->email,
-          "senha_hash" => $anunciante->senhaHash,
-          "telefone" => $anunciante->telefone
+            'nome' => $anunciante->nome,
+            'cpf' => $anunciante->cpf,
+            'email' => $anunciante->email,
+            'senha_hash' => $anunciante->senhaHash,
+            'telefone' => $anunciante->telefone
         ];
 
         try {
@@ -33,9 +33,9 @@ class AnuncianteRepository
         } catch (PDOException $e) {
             $message = $e->getMessage();
             $sqlState = $e->getCode();
-            if ($sqlState === '23000') //23000 - Integrity constraint violation
-             { 
-              if (str_contains($message, 'cpf')) {
+            if ($sqlState === '23000')  // 23000 - Integrity constraint violation
+            {
+                if (str_contains($message, 'cpf')) {
                     throw new Exception('CPF ja cadastrado.');
                 }
                 if (str_contains($message, 'email')) {
@@ -52,11 +52,11 @@ class AnuncianteRepository
     public function getByEmail(string $email): ?AnuncianteDTO
     {
         $query = <<<SQL
-          SELECT * FROM `anunciante` WHERE `email` = :email;
-        SQL;
+              SELECT * FROM `anunciante` WHERE `email` = :email;
+            SQL;
 
         try {
-            $result = $this->db->prepareExecute($query, ["email" => $email]);
+            $result = $this->db->prepareExecute($query, ['email' => $email]);
             $row = $result->stmt->fetch();
             if (!$row) {
                 return null;

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../internal/logger/LogService.php";
-require_once __DIR__ . "/../messages/MessageDTO.php";
-require_once __DIR__ . "/FotoRepository.php";
+require_once __DIR__ . '/../internal/logger/LogService.php';
+require_once __DIR__ . '/../messages/MessageDTO.php';
+require_once __DIR__ . '/FotoRepository.php';
 
 class FotoService
 {
@@ -18,7 +18,7 @@ class FotoService
     public function savePhotos(array $files): array
     {
         if (empty($files)) {
-            throw new Exception("Nenhuma foto foi enviada.");
+            throw new Exception('Nenhuma foto foi enviada.');
         }
 
         $savedFileNames = [];
@@ -41,53 +41,54 @@ class FotoService
         }
 
         if (empty($savedFileNames)) {
-            throw new Exception("Nenhuma foto válida foi processada.");
+            throw new Exception('Nenhuma foto válida foi processada.');
         }
 
         return $savedFileNames;
-  }
-
-    public function getPhotosByAnuncioId(int $anuncioId): array {
-      try {
-        $filenames = $this->repository->getFotosByAnuncioId($anuncioId);
-        return $filenames;
-      } catch (Throwable $e) {
-         return []; 
-      }
     }
 
-      public  function deletePhotos(array $filenames): bool
-      {
+    public function getPhotosByAnuncioId(int $anuncioId): array
+    {
         try {
-          foreach ($filenames as $filename) {
-              $fileToDelete = $this->uploadDir . $filename;
-              if (file_exists($fileToDelete)) {
-                  unlink($fileToDelete);
-              }
-          }
-          return true;
-        } catch(Throwable $e) {
+            $filenames = $this->repository->getFotosByAnuncioId($anuncioId);
+            return $filenames;
+        } catch (Throwable $e) {
+            return [];
+        }
+    }
+
+    public function deletePhotos(array $filenames): bool
+    {
+        try {
+            foreach ($filenames as $filename) {
+                $fileToDelete = $this->uploadDir . $filename;
+                if (file_exists($fileToDelete)) {
+                    unlink($fileToDelete);
+                }
+            }
+            return true;
+        } catch (Throwable $e) {
             return false;
         }
-      }
+    }
 
-      public function getPhotos(array $anuncios): MessageDTO
-      {
-          try {
-              $photos = $this->repository->getPhotos($anuncios);
-              return new MessageDTO(success: true, obj: $photos);
-          } catch (Throwable $e) {
-              return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
-          }
-      }
+    public function getPhotos(array $anuncios): MessageDTO
+    {
+        try {
+            $photos = $this->repository->getPhotos($anuncios);
+            return new MessageDTO(success: true, obj: $photos);
+        } catch (Throwable $e) {
+            return new MessageDTO(success: false, message: 'Erro ao resgatar fotos dos anuncios.');
+        }
+    }
 
-      public function getAllPhotosByAnuncioId(int $anuncioId): MessageDTO
-      {
-          try {
-              $photos = $this->repository->getFotosByAnuncioId($anuncioId);
-              return new MessageDTO(success: true, obj: $photos);
-          } catch (Throwable $e) {
-              return new MessageDTO(success: false, message: "Erro ao resgatar fotos do anúncio.");
-          }
-      }
+    public function getAllPhotosByAnuncioId(int $anuncioId): MessageDTO
+    {
+        try {
+            $photos = $this->repository->getFotosByAnuncioId($anuncioId);
+            return new MessageDTO(success: true, obj: $photos);
+        } catch (Throwable $e) {
+            return new MessageDTO(success: false, message: 'Erro ao resgatar fotos do anúncio.');
+        }
+    }
 }

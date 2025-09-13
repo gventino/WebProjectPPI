@@ -4,8 +4,7 @@ class MessageDTO
 {
     public function __construct(
         public bool $success,
-        public ?string $message = "",
-        public MessageObjInterface | array | null $obj = null,
-    ) {
-    }
+        public ?string $message = '',
+        public MessageObjInterface|array|null $obj = null,
+    ) {}
 }

@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/AnuncianteRepository.php";
-require_once __DIR__ . "/../messages/MessageDTO.php";
+require_once __DIR__ . '/AnuncianteRepository.php';
+require_once __DIR__ . '/../messages/MessageDTO.php';
 
 class AnuncianteService
 {
@@ -14,15 +14,14 @@ class AnuncianteService
 
     public function register(AnuncianteDTO $anunciante): MessageDTO
     {
-
         $anunciante->senhaHash = password_hash($anunciante->senhaHash, PASSWORD_DEFAULT);
         try {
             $result = $this->repository->register($anunciante);
-            return new MessageDTO(success: $result, message: $result ? "" : "Não foi possível cadastrar o anunciante.");
+            return new MessageDTO(success: $result, message: $result ? '' : 'Não foi possível cadastrar o anunciante.');
         } catch (Exception $e) {
             return new MessageDTO(success: false, message: $e->getMessage());
         } catch (Throwable $e) {
-            return new MessageDTO(success: false, message: "Erro ao cadastrar anunciante.");
+            return new MessageDTO(success: false, message: 'Erro ao cadastrar anunciante.');
         }
     }
 
@@ -32,28 +31,28 @@ class AnuncianteService
         if ($anunciante == null) {
             return new MessageDTO(
                 success: false,
-                message: "Anunciante nao encontrado"
+                message: 'Anunciante nao encontrado'
             );
         }
 
         if (!password_verify($senha, $anunciante->senhaHash)) {
             return new MessageDTO(
                 success: false,
-                message: "Senha incorreta"
+                message: 'Senha incorreta'
             );
         }
 
         session_start();
-        $_SESSION["user_id"] = $anunciante->id;
-        $_SESSION["user_name"] = $anunciante->nome;
-        $_SESSION["user_email"] = $anunciante->email;
-        $_SESSION["user_cpf"] = $anunciante->cpf;
-        $_SESSION["user_telefone"] = $anunciante->telefone;
-        $_SESSION["logged_in"] = true;
+        $_SESSION['user_id'] = $anunciante->id;
+        $_SESSION['user_name'] = $anunciante->nome;
+        $_SESSION['user_email'] = $anunciante->email;
+        $_SESSION['user_cpf'] = $anunciante->cpf;
+        $_SESSION['user_telefone'] = $anunciante->telefone;
+        $_SESSION['logged_in'] = true;
 
         return new MessageDTO(
             success: true,
-            message: "Login realizado com sucesso",
+            message: 'Login realizado com sucesso',
             obj: $anunciante,
         );
     }
@@ -66,17 +65,16 @@ class AnuncianteService
 
         return new MessageDTO(
             success: true,
-            message: "Sessao destruida"
+            message: 'Sessao destruida'
         );
     }
 
     public function checkSession(): MessageDTO
     {
         session_start();
-        $loggedIn = $_SESSION["logged_in"] ?? false;
-        $name = $_SESSION["user_name"] ?? null;
-        $email = $_SESSION["user_email"] ?? null;
-        return new MessageDTO(success: $loggedIn, obj: ["name" => $name, "email" => $email]);
+        $loggedIn = $_SESSION['logged_in'] ?? false;
+        $name = $_SESSION['user_name'] ?? null;
+        $email = $_SESSION['user_email'] ?? null;
+        return new MessageDTO(success: $loggedIn, obj: ['name' => $name, 'email' => $email]);
     }
-
 }
