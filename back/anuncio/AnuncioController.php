@@ -103,6 +103,7 @@ switch ($action) {
         foreach ($anuncios as $anuncio) {
             $anuncioArray = (array) $anuncio;
             $anuncioArray['foto'] = $fotos[$anuncio->id] ?? null;
+            $anuncioArray['id'] = $anuncio->id;
             $anunciosCompletos[] = $anuncioArray;
         }
 
@@ -158,6 +159,41 @@ switch ($action) {
       http_response_code(200);
       echo json_encode($mensagemService);
       break;
+
+    case 'getById':
+        $anuncioId = $input['anuncioId'] ?? null;
+        if (!$anuncioId) {
+            http_response_code(400);
+            echo json_encode(new MessageDTO(
+                success: false,
+                message: "ID do anúncio é obrigatório"
+            ));
+            break;
+        }
+
+        $messageAnuncioService = $anuncioService->getById($anuncioId);
+        if (!$messageAnuncioService->success) {
+            http_response_code(404);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
+        $anuncio = $messageAnuncioService->obj;
+        
+        $mensagemFotoService = $fotoService->getAllPhotosByAnuncioId($anuncio['id']);
+        $fotos = $mensagemFotoService->obj;
+        
+        $anuncioArray = $anuncio;
+        $anuncioArray['fotos'] = $fotos ?? [];
+        
+        http_response_code(200);
+        echo json_encode(new MessageDTO(
+            success: true,
+            message: "Anúncio encontrado com sucesso",
+            obj: $anuncioArray
+        ));
+        break;
+
     default:
         LogService::error("unkown action at AnuncioController - {$action}");
         http_response_code(404);
