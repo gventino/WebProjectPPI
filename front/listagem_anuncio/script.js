@@ -82,9 +82,7 @@ async function excluirAnuncio(anuncioId) {
 }
 
 function viewDetails(announcementId) {
-  // depois vamos passar o id do anuncio para a pagina de detalhes e interesses
-  // location.href = `../detalhes_anuncio/index.html?id=${announcementId}`;
-  location.href = `../detalhes_anuncio/index.html`;
+  location.href = `../detalhes_anuncio/index.html?id=${announcementId}`;
 }
 
 function viewInterests(announcementId) {

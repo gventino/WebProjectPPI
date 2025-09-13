@@ -77,4 +77,14 @@ class FotoService
               return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
           }
       }
+
+      public function getAllPhotosByAnuncioId(int $anuncioId): MessageDTO
+      {
+          try {
+              $photos = $this->repository->getFotosByAnuncioId($anuncioId);
+              return new MessageDTO(success: true, obj: $photos);
+          } catch (Throwable $e) {
+              return new MessageDTO(success: false, message: "Erro ao resgatar fotos do anúncio.");
+          }
+      }
 }

@@ -164,4 +164,49 @@ class AnuncioRepository
       }
     }
 
+    public function getById(int $anuncioId): ?AnuncioDTO {
+        $query = <<<SQL
+          SELECT a.*, an.nome as anunciante_nome, an.telefone as anunciante_telefone, an.email as anunciante_email
+          FROM anuncio a
+          JOIN anunciante an ON a.id_anunciante = an.id
+          WHERE a.id = :id_anuncio;
+        SQL;
+
+        $params = [
+          "id_anuncio" => $anuncioId
+        ];
+
+        try {
+            $response = $this->service->prepareExecute($query, $params);
+            if (!$response->success) {
+                throw new Exception("Could not get anuncio with id = $anuncioId");
+            }
+
+            $row = $response->stmt->fetch();
+            if (!$row) {
+                return null;
+            }
+
+            return new AnuncioDTO(
+                id: $row["id"],
+                marca: $row["marca"],
+                modelo: $row["modelo"],
+                ano: $row["ano"],
+                cor: $row["cor"],
+                quilometragem: $row["quilometragem"],
+                descricao: $row["descricao"],
+                valor: $row["valor"],
+                dataHora: $row["data_hora"],
+                estado: $row["estado"],
+                cidade: $row["cidade"],
+                idAnunciante: $row["id_anunciante"],
+                anuncianteNome: $row["anunciante_nome"],
+                anuncianteTelefone: $row["anunciante_telefone"],
+                anuncianteEmail: $row["anunciante_email"]
+            );
+        } catch(Throwable $e) {
+            throw $e;
+        }
+    }
+
 }

@@ -15,6 +15,9 @@ class AnuncioDTO
         public string $cidade,
         public ?int $idAnunciante = null,
         public ?int $id = null,
+        public ?string $anuncianteNome = null,
+        public ?string $anuncianteTelefone = null,
+        public ?string $anuncianteEmail = null,
     ) {
     }
 }
