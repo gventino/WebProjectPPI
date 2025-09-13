@@ -45,27 +45,30 @@ class FotoService
         }
 
         return $savedFileNames;
+  }
+
+    public function getPhotosByAnuncioId(int $anuncioId): array {
+      try {
+        $filenames = $this->repository->getFotosByAnuncioId($anuncioId);
+        return $filenames;
+      } catch (Throwable $e) {
+         return []; 
+      }
     }
 
-    public function deletePhotosByAnuncioId(int $anuncioId): bool 
-    {
-          try{
-            $filenames = $this->repository->getFotosByAnuncioId($anuncioId);
-            $this->deletePhotos($filenames);
-            return true;
-          } catch(Throwable $e) {
-            return false;
-          }
-      }
-
-      public  function deletePhotos(array $filenames): void
+      public  function deletePhotos(array $filenames): bool
       {
+        try {
           foreach ($filenames as $filename) {
               $fileToDelete = $this->uploadDir . $filename;
               if (file_exists($fileToDelete)) {
                   unlink($fileToDelete);
               }
           }
+          return true;
+        } catch(Throwable $e) {
+            return false;
+        }
       }
 
       public function getPhotos(array $anuncios): MessageDTO
@@ -75,6 +78,16 @@ class FotoService
               return new MessageDTO(success: true, obj: $photos);
           } catch (Throwable $e) {
               return new MessageDTO(success: false, message: "Erro ao resgatar fotos dos anuncios.");
+          }
+      }
+
+      public function getAllPhotosByAnuncioId(int $anuncioId): MessageDTO
+      {
+          try {
+              $photos = $this->repository->getFotosByAnuncioId($anuncioId);
+              return new MessageDTO(success: true, obj: $photos);
+          } catch (Throwable $e) {
+              return new MessageDTO(success: false, message: "Erro ao resgatar fotos do anúncio.");
           }
       }
 }

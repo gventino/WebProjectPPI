@@ -38,7 +38,7 @@ h3 {
 h4 {
     font-size: 1.8em;
     margin: 0px;
-    margin-bottom: 0.8em;
+    margin-bottom: 35px;
     color: #333;
 }
 
@@ -315,6 +315,22 @@ main {
 
 .dark-theme h4 {
     color: #ffffff;
+}
+
+.coming-soon-text {
+    color: #ff0000;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+}
+
+h4:has(+ .coming-soon-text) {
+    margin-bottom: 0;
+}
+
+.dark-theme .coming-soon-text {
+    color: #ff4444;
 }
 
 /* Responsividade */

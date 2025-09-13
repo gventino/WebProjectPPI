@@ -96,4 +96,28 @@ class AnuncioService
       );
     }
   }
+
+  public function getById(int $anuncioId): MessageDTO
+  {
+    try {
+      $anuncio = $this->repository->getById($anuncioId);
+      if (!$anuncio) {
+        return new MessageDTO(
+          success: false,
+          message: "Anúncio não encontrado"
+        );
+      }
+
+      return new MessageDTO(
+        success: true,
+        message: "Anúncio encontrado com sucesso",
+        obj: (array) $anuncio
+      );
+    } catch (Throwable $e) {
+      return new MessageDTO(
+        success: false,
+        message: "Erro ao buscar anúncio - " . $e->getMessage()
+      );
+    }
+  }
 }

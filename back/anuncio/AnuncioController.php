@@ -103,6 +103,7 @@ switch ($action) {
         foreach ($anuncios as $anuncio) {
             $anuncioArray = (array) $anuncio;
             $anuncioArray['foto'] = $fotos[$anuncio->id] ?? null;
+            $anuncioArray['id'] = $anuncio->id;
             $anunciosCompletos[] = $anuncioArray;
         }
 
@@ -136,7 +137,25 @@ switch ($action) {
         break;
       }
 
-      $fotosSuccess = $fotoService->deletePhotosByAnuncioId($anuncioId);
+      $filepaths = $fotoService->getPhotosByAnuncioId($anuncioId);
+      if(count($filepaths) == 0){
+        http_response_code(500);
+        echo json_encode(
+          new MessageDTO(
+            success: false,
+            message: "O servidor falhou em encontrar o path das fotos no db."
+          )
+        );
+      }
+
+      $mensagemService = $anuncioService->delete($anuncioId); 
+      if (!$mensagemService->success) {
+        http_response_code(500);
+        echo json_encode($mensagemService);
+        break;
+      }
+
+      $fotosSuccess = $fotoService->deletePhotos($filepaths);
       if (!$fotosSuccess) {
         http_response_code(500);
         echo json_encode(
@@ -146,18 +165,46 @@ switch ($action) {
           )
         );
         break;
-      }
+      }  
 
-      $mensagemService = $anuncioService->delete($anuncioId); 
-      if (!$mensagemService->success) {
-        http_response_code(500);
-        echo json_encode($mensagemService);
-        break;
-      }
-      
       http_response_code(200);
       echo json_encode($mensagemService);
       break;
+
+    case 'getById':
+        $anuncioId = $input['anuncioId'] ?? null;
+        if (!$anuncioId) {
+            http_response_code(400);
+            echo json_encode(new MessageDTO(
+                success: false,
+                message: "ID do anúncio é obrigatório"
+            ));
+            break;
+        }
+
+        $messageAnuncioService = $anuncioService->getById($anuncioId);
+        if (!$messageAnuncioService->success) {
+            http_response_code(404);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
+        $anuncio = $messageAnuncioService->obj;
+        
+        $mensagemFotoService = $fotoService->getAllPhotosByAnuncioId($anuncio['id']);
+        $fotos = $mensagemFotoService->obj;
+        
+        $anuncioArray = $anuncio;
+        $anuncioArray['fotos'] = $fotos ?? [];
+        
+        http_response_code(200);
+        echo json_encode(new MessageDTO(
+            success: true,
+            message: "Anúncio encontrado com sucesso",
+            obj: $anuncioArray
+        ));
+        break;
+
     default:
         LogService::error("unkown action at AnuncioController - {$action}");
         http_response_code(404);
