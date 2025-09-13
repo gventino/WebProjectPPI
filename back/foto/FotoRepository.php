@@ -48,4 +48,20 @@ class FotoRepository
 
         return $photosMap;
   }
+
+  public function getFotosByAnuncioId(int $anuncioId): array 
+  {
+      $query = <<<SQL
+        SELECT nome_arq_foto 
+          FROM foto
+          WHERE id_anuncio = ?;
+      SQL;
+
+      $response = $this->service->prepareExecute($query, [$anuncioId]);
+      if (!$response->success) {
+        throw new Exception("Could not get fotos for anuncioId = $anuncioId");
+      }
+      $fotos = $response->stmt->fetchAll();
+      return array_map(fn($foto) => $foto['nome_arq_foto'], $fotos);
+  }
 }

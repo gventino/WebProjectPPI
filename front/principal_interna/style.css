@@ -28,10 +28,6 @@ main {
     justify-content: center;
 }
 
-div {
-    margin-top: 2em;
-}
-
 /*pegando container do input e selects*/
 main>div {
     display: flex;
@@ -39,14 +35,10 @@ main>div {
     gap: 1em;
 }
 
-/*pegando container que contém o carousel*/
-
-
 button {
     background-color: white;
     font-family: 'Lilita One', sans-serif;
     padding: 1em;
-    margin: 1em;
     border: 2px solid black;
     border-radius: 10%;
     cursor: pointer;
@@ -59,23 +51,6 @@ button:hover {
 }
 
 /* --- darkMode --- */
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.8em;
-    padding: 0.3em;
-    border-radius: 50%;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-}
-
-#theme-toggle:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-}
-
 .dark-theme {
     background-color: #1a1a1a;
     color: #ffffff;
@@ -98,14 +73,20 @@ button:hover {
         font-size: 5em;
     }
 
-    main>div {
-        align-self: center;
-        margin-top: 4em;
-        flex-wrap: wrap;
+    .options-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
     }
 
-    main>div+div button {
-        display: none;
+    .options-container > div {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .options-container button {
+        width: 100%;
+        max-width: none;
     }
 }
 
@@ -122,13 +103,22 @@ button:hover {
         gap: 2em;
     }
 
-    main>div {
-        align-self: center;
-        margin-top: 4em;
-        flex-wrap: wrap;
+    .options-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        margin-top: 2em;
     }
 
-    main>div+div button {
-        display: none;
+    .options-container > div {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .options-container button {
+        width: 100%;
+        max-width: none;
+        font-size: medium;
+        padding: 0.8em;
     }
 }

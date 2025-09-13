@@ -120,4 +120,48 @@ class AnuncioRepository
         }
         return $response;
     }
+
+    public function delete(int $anuncioId): bool
+    {
+        // foto tem on delete cascade, ent se apagar o anuncio o db apaga a foto automatico!
+        $query = <<<SQL
+          DELETE FROM anuncio
+            WHERE id = ?;
+        SQL;
+        
+        try {
+          $response = $this->service->prepareExecute($query, [$anuncioId]);
+          if (!$response->success){
+            throw new Exception("Fail to delete anuncio and foto with anuncioId = $anuncioId");
+          }
+          return true;
+
+        } catch(Throwable $e) {
+          throw $e;
+        }
+    }
+
+    public function isOwner(int $anuncianteId, int $anuncioId): bool {
+      $query = <<<SQL
+        SELECT * FROM anuncio
+          WHERE id = :id_anuncio
+          AND id_anunciante = :id_anunciante;
+      SQL;
+
+      $params = [
+        "id_anuncio" => $anuncioId,
+        "id_anunciante" => $anuncianteId
+      ];
+
+      try {
+        $response = $this->service->prepareExecute($query, $params);
+        if (!$response->success){
+            throw new Exception("Could not verify ownership for anuncio $anuncioId and anunciante $anuncianteId");
+        }
+        return count($response->stmt->fetchAll()) > 0;
+      } catch(Throwable $e) {
+        throw $e;
+      }
+    }
+
 }
