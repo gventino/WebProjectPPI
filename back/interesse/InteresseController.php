@@ -12,7 +12,7 @@ $action = $input['action'] ?? $_POST['action'] ?? 'empty';
 
 switch ($action) {
     case 'register':
-        $anuncioId = $_POST['anuncioId'] ?? '';
+        $anuncioId = $input['anuncioId'] ?? '';
         if ($anuncioId == '') {
             http_response_code(500);
             echo json_encode(
@@ -25,11 +25,11 @@ switch ($action) {
         }
 
         $interesse = new InteresseDTO(
-            nome: htmlspecialchars($_POST['nome']),
-            telefone: htmlspecialchars($_POST['telefone']),
-            mensagem: htmlspecialchars($_POST['mensagem']),
-            dataHora: htmlspecialchars($_POST['dataHora']),
-            idAnuncio: htmlspecialchars($_POST['idAnuncio'])
+            nome: htmlspecialchars($input['nome']),
+            telefone: htmlspecialchars($input['telefone']),
+            mensagem: htmlspecialchars($input['mensagem']),
+            dataHora: htmlspecialchars($input['dataHora']),
+            idAnuncio: htmlspecialchars($input['anuncioId'])
         );
 
         $mensagemInteresseService = $interesseService->registerInterest($interesse);

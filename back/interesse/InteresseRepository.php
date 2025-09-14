@@ -31,11 +31,15 @@ class InteresseRepository
                     VALUES (:nome, :telefone, :mensagem, :data_hora, :id_anuncio);
             SQL;
 
+        $dateTime = new DateTime($interesse->dataHora);
+
+        $mysqlDateTime = $dateTime->format('Y-m-d H:i:s');
+
         $params = [
             'nome' => $interesse->nome,
             'telefone' => $interesse->telefone,
             'mensagem' => $interesse->mensagem,
-            'data_hora' => $interesse->dataHora,
+            'data_hora' => $mysqlDateTime,
             'id_anuncio' => $interesse->idAnuncio
         ];
 

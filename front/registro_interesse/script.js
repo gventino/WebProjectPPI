@@ -22,36 +22,67 @@ themeToggleButton.addEventListener('click', () => {
     rootHtml.classList.toggle('dark-theme');
 });
 
-// submissao de formulario
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const anuncioId = urlParams.get('anuncioId');
+
+    if (anuncioId) {
+        const idAnuncioInput = document.querySelector('input[name="anuncioId"]');
+        if (idAnuncioInput) {
+            idAnuncioInput.value = anuncioId;
+        }
+    } else {
+        console.error("ID do anúncio não encontrado na URL.");
+        alert("Erro: Não foi possível identificar o anúncio. Por favor, volte e tente novamente.");
+        const submitButton = document.querySelector('form button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+    }
+});
+
+
+// Submissão de formulário com JSON
 const formElement = document.querySelector('form');
 
 async function register(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const formData = new FormData(formElement);
-  const url = '/../../back/interesse/InteresseController.php';
-
-  formData.append('action', 'register');
-  formData.append('dataHora', new Date().toISOString());
-
-  try {
-    const options = {
-      method: 'POST',
-      body: formData
+    const form = event.target;
+    const data = {
+        nome: form.nome.value,
+        telefone: form.telefone.value,
+        mensagem: form.mensagem.value,
+        anuncioId: form.anuncioId.value,
+        action: 'register',
+        dataHora: new Date().toISOString()
     };
 
-    const response = await fetch(url, options);
+    const url = '/../../back/interesse/InteresseController.php';
 
-    const data = await response.json();
-    if (data.success) {
-      alert("Interesse registrado com sucesso!");
-    } else {
-      alert("Ocorreu algum erro no cadastro: " + (data.message || ''));
-      throw new Error(data.message);
+    try {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Interesse registrado com sucesso!");
+        } else {
+            alert("Ocorreu algum erro no cadastro: " + (result.message || ''));
+            throw new Error(result.message);
+        }
+    } catch (error) {
+        console.error(`Error submitting form to register - ${error}`);
+        alert("Falha ao conectar com o servidor. Tente novamente mais tarde.");
     }
-  } catch (error) {
-    console.error(`Error submitting form to register - ${error}`);
-  }
 }
 
 formElement.addEventListener('submit', register);
+
