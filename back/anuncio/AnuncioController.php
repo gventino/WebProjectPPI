@@ -9,6 +9,10 @@ require_once __DIR__ . '/../interesse/InteresseService.php';
 require_once __DIR__ . '/../messages/MessageDTO.php';
 
 header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Access-Control-Max-Age: 86400');
 
 $anuncioService = new AnuncioService();
 $fotoService = new FotoService();
@@ -246,6 +250,67 @@ switch ($action) {
         ];
         http_response_code(200);
         echo json_encode($response);
+        break;
+
+    case 'listAll':
+        $filters = [
+            'marca' => $input['marca'] ?? '',
+            'modelo' => $input['modelo'] ?? '',
+            'cidade' => $input['cidade'] ?? '',
+            'estado' => $input['estado'] ?? '',
+            'search' => $input['search'] ?? ''
+        ];
+
+        $messageAnuncioService = $anuncioService->listAll($filters);
+        if (!$messageAnuncioService->success) {
+            http_response_code(500);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
+        $anuncios = $messageAnuncioService->obj;
+
+        $anunciosCompletos = [];
+        foreach ($anuncios as $anuncio) {
+            $anuncioArray = (array) $anuncio;
+            
+            $mensagemFotoService = $fotoService->getPhotos([$anuncio]);
+            $fotos = $mensagemFotoService->obj;
+            $anuncioArray['foto'] = $fotos[$anuncio->id] ?? null;
+            $anuncioArray['id'] = $anuncio->id;
+            $anunciosCompletos[] = $anuncioArray;
+        }
+
+        http_response_code(200);
+        echo json_encode(
+            new MessageDTO(
+                success: true,
+                message: 'Listagem de anúncios realizada com sucesso',
+                obj: $anunciosCompletos
+            )
+        );
+        break;
+
+    case 'getFilterOptions':
+        $field = $input['field'] ?? '';
+        if (empty($field)) {
+            http_response_code(400);
+            echo json_encode(new MessageDTO(
+                success: false,
+                message: 'Campo é obrigatório'
+            ));
+            break;
+        }
+
+        $messageAnuncioService = $anuncioService->getDistinctValues($field);
+        if (!$messageAnuncioService->success) {
+            http_response_code(500);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
+        http_response_code(200);
+        echo json_encode($messageAnuncioService);
         break;
 
     default:

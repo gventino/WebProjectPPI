@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../header.css">
     <title>Veíco - Home</title>
@@ -17,7 +18,6 @@
     <header>
         <div>
             <div class="nav-left">
-                <button class="nav-item" onclick="location.href='../cadastro_usuario/index.html'">Cadastre-se</button>
             </div>
             <div class="logo-section">
                 <img src="../images/LOGO_CLARA.png" alt="logo da veíco em tema branco" id="logo"
@@ -25,7 +25,6 @@
                 <button id="theme-toggle" title="Alternar tema">🌗</button>
             </div>
             <div class="nav-right">
-                <button class="nav-item" onclick="location.href='../login/index.html'">Faça login</button>
             </div>
             <div class="mobile-menu-toggle">
                 <span></span>
@@ -34,67 +33,52 @@
             </div>
         </div>
         <div class="mobile-nav">
-            <button class="nav-item" onclick="location.href='../cadastro_usuario/index.html'">Cadastre-se</button>
-            <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache seu veíco</button>
-            <button class="nav-item" onclick="location.href='../login/index.html'">Faça login</button>
         </div>
     </header>
 
     <h1>ACHE SEU VEÍCO!</h1>
     <main>
-        <div>
-            <input type="text" name="busca" id="busca" placeholder="Busque por um veíco!">
-            <select name="marca" id="marca">
+        <div class="filters-container">
+            <input type="text" name="busca" id="busca" placeholder="Busque por um veíco!" class="form-control">
+            <select name="marca" id="marca" class="form-select">
                 <option value="" disabled selected>Marca</option>
-                <option value="marca1">Marca1</option>
-                <option value="marca2">Marca2</option>
-                <option value="marca3">Marca3</option>
-                <option value="marca4">Marca4</option>
-                <option value="marca5">Marca5</option>
             </select>
-            <select name="modelo" id="modelo">
+            <select name="modelo" id="modelo" class="form-select">
                 <option value="" disabled selected>Modelo</option>
-                <option value="modelo1">Modelo1</option>
-                <option value="modelo2">Modelo2</option>
-                <option value="modelo3">Modelo3</option>
-                <option value="modelo4">Modelo4</option>
-                <option value="modelo5">Modelo5</option>
             </select>
-            <select name="local" id="local">
-                <option value="" disabled selected>Local</option>
-                <option value="local1">Local1</option>
-                <option value="local2">Local2</option>
-                <option value="local3">Local3</option>
-                <option value="local4">Local4</option>
-                <option value="local5">Local5</option>
+            <select name="cidade" id="cidade" class="form-select">
+                <option value="" disabled selected>Cidade</option>
+            </select>
+            <select name="estado" id="estado" class="form-select">
+                <option value="" disabled selected>Estado</option>
             </select>
         </div>
-        <div>
-            <button type="button"><img src="../images/PREV.png" alt="botão de avançar lista de cards"></button>
-            <div class="carousel">
-                <div>
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="foto do veiculo">
-                    <p class="title">MARCA - MODELO - ANO DE FABRICAÇÃO</p>
-                    <p class="value">VALOR DE VENDA</p>
-                    <p class="city">CIDADE</p>
+        
+        <div class="carousel-container">
+            <div id="vehiclesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carouselInner">
                 </div>
-                <div>
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="foto do veiculo">
-                    <p class="title">MARCA - MODELO - ANO DE FABRICAÇÃO</p>
-                    <p class="value">VALOR DE VENDA</p>
-                    <p class="city">CIDADE</p>
-                </div>
-                <div>
-                    <img src="../images/VEICO_PLACEHOLDER.webp" alt="foto do veiculo">
-                    <p class="title">MARCA - MODELO - ANO DE FABRICAÇÃO</p>
-                    <p class="value">VALOR DE VENDA</p>
-                    <p class="city">CIDADE</p>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#vehiclesCarousel" data-bs-slide="prev">
+                    <img src="../images/PREV.png" alt="botão de avançar lista de cards">
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#vehiclesCarousel" data-bs-slide="next">
+                    <img src="../images/NEXT.png" alt="botão de voltar lista de cards">
+                </button>
             </div>
-            <button type="button"><img src="../images/NEXT.png" alt="botão de voltar lista de cards"></button>
+        </div>
+        
+        <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+        </div>
+        
+        <div class="no-vehicles" id="noVehicles" style="display: none;">
+            <p>Nenhum veículo encontrado com os filtros aplicados.</p>
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/session.js"></script>
     <script src="script.js"></script>
     <script src="../header.js"></script>

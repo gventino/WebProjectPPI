@@ -208,4 +208,101 @@ class AnuncioRepository
             throw $e;
         }
     }
+
+    public function listAll(array $filters = []): array
+    {
+        $query = <<<SQL
+              SELECT a.*, an.nome as anunciante_nome, an.telefone as anunciante_telefone, an.email as anunciante_email
+              FROM anuncio a
+              JOIN anunciante an ON a.id_anunciante = an.id
+              WHERE 1=1
+            SQL;
+
+        $params = [];
+
+        if (!empty($filters['marca'])) {
+            $query .= " AND a.marca = :marca";
+            $params['marca'] = $filters['marca'];
+        }
+
+        if (!empty($filters['modelo'])) {
+            $query .= " AND a.modelo = :modelo";
+            $params['modelo'] = $filters['modelo'];
+        }
+
+        if (!empty($filters['cidade'])) {
+            $query .= " AND a.cidade = :cidade";
+            $params['cidade'] = $filters['cidade'];
+        }
+
+        if (!empty($filters['estado'])) {
+            $query .= " AND a.estado = :estado";
+            $params['estado'] = $filters['estado'];
+        }
+
+        if (!empty($filters['search'])) {
+            $query .= " AND (a.marca LIKE :search OR a.modelo LIKE :search OR a.descricao LIKE :search)";
+            $params['search'] = '%' . $filters['search'] . '%';
+        }
+
+        $query .= " ORDER BY a.data_hora DESC";
+
+        try {
+            $response = $this->service->prepareExecute($query, $params);
+            if (!$response->success) {
+                throw new Exception("Could not list all anuncios");
+            }
+
+            $anuncios = [];
+            while ($row = $response->stmt->fetch()) {
+                $anuncios[] = new AnuncioDTO(
+                    id: $row['id'],
+                    marca: $row['marca'],
+                    modelo: $row['modelo'],
+                    ano: $row['ano'],
+                    cor: $row['cor'],
+                    quilometragem: $row['quilometragem'],
+                    descricao: $row['descricao'],
+                    valor: $row['valor'],
+                    dataHora: $row['data_hora'],
+                    estado: $row['estado'],
+                    cidade: $row['cidade'],
+                    idAnunciante: $row['id_anunciante'],
+                    anuncianteNome: $row['anunciante_nome'],
+                    anuncianteTelefone: $row['anunciante_telefone'],
+                    anuncianteEmail: $row['anunciante_email']
+                );
+            }
+            return $anuncios;
+        } catch (Throwable $e) {
+            throw $e;
+        }
+    }
+
+    public function getDistinctValues(string $field): array
+    {
+        $allowedFields = ['marca', 'modelo', 'cidade', 'estado'];
+        if (!in_array($field, $allowedFields)) {
+            throw new Exception("Field $field is not allowed");
+        }
+
+        $query = <<<SQL
+              SELECT DISTINCT $field FROM anuncio WHERE $field IS NOT NULL AND $field != '' ORDER BY $field
+            SQL;
+
+        try {
+            $response = $this->service->prepareExecute($query, []);
+            if (!$response->success) {
+                throw new Exception("Could not get distinct values for $field");
+            }
+
+            $values = [];
+            while ($row = $response->stmt->fetch()) {
+                $values[] = $row[$field];
+            }
+            return $values;
+        } catch (Throwable $e) {
+            throw $e;
+        }
+    }
 }

@@ -15,6 +15,7 @@ header>div {
     align-items: center;
     justify-content: space-between;
     position: relative;
+    box-sizing: content-box;
 }
 
 .nav-left,
@@ -127,7 +128,7 @@ header>div {
     transition: 0.2s;
 }
 
-.dark-theme .header {
+.dark-theme header {
     background-color: #2d2d2d;
     border-bottom-color: #ffffff;
 }
@@ -142,6 +143,7 @@ header>div {
 .dark-theme .nav-item:hover,
 .dark-theme .mobile-nav-item:hover {
     background-color: #404040;
+    transform: scale(1.05);
 }
 
 .dark-theme .mobile-nav {
@@ -150,13 +152,17 @@ header>div {
 }
 
 .dark-theme .mobile-menu-toggle span {
-    background-color: black;
+    background-color: #ffffff;
 }
 
 .dark-theme #theme-toggle {
     background-color: #2d2d2d;
     border-color: #ffffff;
     color: #ffffff;
+}
+
+.dark-theme #theme-toggle:hover {
+    background-color: #404040;
 }
 
 @media (max-width: 1678px) {
