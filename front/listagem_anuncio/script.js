@@ -86,6 +86,6 @@ function viewDetails(announcementId) {
 }
 
 function viewInterests(announcementId) {
-  location.href = `../listagem_interesse/index.html`;
+  location.href = `../listagem_interesse/index.html?id=${announcementId}`;
 }
 

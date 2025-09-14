@@ -5,12 +5,14 @@ require_once __DIR__ . '/AnuncioDTO.php';
 require_once __DIR__ . '/AnuncioService.php';
 require_once __DIR__ . '/../foto/FotoDTO.php';
 require_once __DIR__ . '/../foto/FotoService.php';
+require_once __DIR__ . '/../interesse/InteresseService.php';
 require_once __DIR__ . '/../messages/MessageDTO.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
 $anuncioService = new AnuncioService();
 $fotoService = new FotoService();
+$interesseService = new InteresseService();
 
 $input = json_decode(file_get_contents('php://input'), true) ?? [];
 $action = $input['action'] ?? $_POST['action'] ?? 'empty';
@@ -202,6 +204,48 @@ switch ($action) {
             message: 'Anúncio encontrado com sucesso',
             obj: $anuncioArray
         ));
+        break;
+
+    case 'interest':
+        $anuncioId = $input['anuncioId'] ?? '';
+        if ($anuncioId == '') {
+            http_response_code(500);
+            echo json_encode(
+                new MessageDTO(
+                    success: false,
+                    message: 'id de anuncio não incluso no payload',
+                )
+            );
+            break;
+        }
+
+        $messageAnuncioService = $anuncioService->getById($anuncioId);
+        if (!$messageAnuncioService->success) {
+            http_response_code(404);
+            echo json_encode($messageAnuncioService);
+            break;
+        }
+
+        $anuncio = $messageAnuncioService->obj;
+
+        $mensagemFotoService = $fotoService->getAllPhotosByAnuncioId($anuncio['id']);
+        $fotos = $mensagemFotoService->obj;
+
+        $mensagemInteresseService = $interesseService->getInteressesByAnuncioId($anuncioId);
+        if (!$mensagemInteresseService->success) {
+            http_response_code(404);
+            echo json_encode($mensagemInteresseService);
+            break;
+        }
+        $interesses = $mensagemInteresseService->obj;
+
+        $response = [
+            'anuncio' => $anuncio,
+            'fotos' => $fotos,
+            'interesses' => $interesses
+        ];
+        http_response_code(200);
+        echo json_encode($response);
         break;
 
     default:
