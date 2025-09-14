@@ -6,6 +6,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  gatekeeper();
   const announcementsContainer = document.querySelector('.announcements-container');
 
   async function carregarAnuncios() {

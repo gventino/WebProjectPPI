@@ -1,6 +1,8 @@
 const themeToggleButton = document.getElementById('theme-toggle');
 const rootHtml = document.documentElement;
 
+document.addEventListener('DOMContentLoaded', innkeeper);
+
 themeToggleButton.addEventListener('click', () => {
     rootHtml.classList.toggle('dark-theme');
 });

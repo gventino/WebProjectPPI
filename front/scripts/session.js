@@ -25,3 +25,27 @@ async function checkSession() {
         };
     }
 }
+
+async function gatekeeper() {
+    const check = await checkSession();
+    if(!check.success){
+        if(check.error!=null){
+            alert(check.error.message)
+        } else {
+            alert("Página apenas para usuários logados!");
+            window.location.href = '../login';
+        }
+    }
+}
+
+async function innkeeper() {
+    const check = await checkSession();
+    if(!check.success){
+        if(check.error!=null){
+            alert(check.error.message)
+        }
+    } else {
+        alert("Você já está logado! Faça o logoff primeiro!");
+            window.location.href = '../principal_interna';
+    }
+}

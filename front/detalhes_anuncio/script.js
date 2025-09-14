@@ -1,6 +1,8 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
+document.addEventListener('DOMContentLoaded', gatekeeper);
+
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-theme');
 });
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function carregarDetalhesAnuncio(anuncioId) {
     try {
-        const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+        const url = '/../../back/anuncio/AnuncioController.php';
         const options = {
             method: 'POST',
             headers: {
