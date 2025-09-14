@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/InteresseRepository.php';
+require_once __DIR__ . '/../messages/MessageDTO.php';
+
 class InteresseService
 {
     public InteresseRepository $repository;
@@ -9,7 +12,7 @@ class InteresseService
         $this->repository = new InteresseRepository();
     }
 
-    public function getInteressesByAnuncioId(int $anuncioId): array
+    public function getInteressesByAnuncioId(int $anuncioId): MessageDTO
     {
         try {
             $interesses = $this->repository->getInteressesByAnuncioId($anuncioId);
