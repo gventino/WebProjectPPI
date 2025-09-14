@@ -260,22 +260,22 @@ async function updateHeaderBasedOnSession() {
 function updateHeaderForLoggedInUser() {
     const navLeft = document.querySelector('.nav-left');
     navLeft.innerHTML = `
-        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
         <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
+        <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
     `;
     
     const navRight = document.querySelector('.nav-right');
     navRight.innerHTML = `
-        <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-        <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Portal Usuário</button>
+        <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache um Veíco</button>
     `;
     
     const mobileNav = document.querySelector('.mobile-nav');
     mobileNav.innerHTML = `
-        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Início</button>
-        <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
-        <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
-        <button class="nav-item" onclick="location.href='../listagem_interesse/index.html'">Interesses</button>
+        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Portal Usuário</button>
+        <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache um Veíco</button>
+        <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
+        <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
     `;
     
     const logo = document.getElementById('logo');

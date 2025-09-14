@@ -1,13 +1,17 @@
 const themeToggleButton = document.getElementById('theme-toggle');
 const rootHtml = document.documentElement;
 
+document.addEventListener('DOMContentLoaded', async () => {
+    await updateHeaderBasedOnSession();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     
-    const anuncioId = urlParams.get('idAnuncio');
+    const anuncioId = urlParams.get('anuncioId');
 
     if (anuncioId) {
-        const idAnuncioInput = document.getElementById('idAnuncio');
+        const idAnuncioInput = document.getElementById('anuncioId');
         if (idAnuncioInput) {
             idAnuncioInput.value = anuncioId;
         }
@@ -86,3 +90,59 @@ async function register(event) {
 
 formElement.addEventListener('submit', register);
 
+async function updateHeaderBasedOnSession() {
+    const sessionResult = await checkSession();
+    
+    if (sessionResult.success && sessionResult.user) {
+        updateHeaderForLoggedInUser(sessionResult.user);
+    } else {
+        updateHeaderForLoggedOutUser();
+    }
+}
+
+function updateHeaderForLoggedInUser() {
+    const navLeft = document.querySelector('.nav-left');
+    navLeft.innerHTML = `
+        <button class="nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
+        <button class="nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
+    `;
+    
+    const navRight = document.querySelector('.nav-right');
+    navRight.innerHTML = `
+        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Portal Usuário</button>
+        <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache um Veíco</button>
+    `;
+    
+    const mobileNav = document.querySelector('.mobile-nav');
+    mobileNav.innerHTML = `
+        <button class="nav-item" onclick="location.href='../principal_interna/index.html'">Portal Usuário</button>
+        <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache um Veíco</button>
+        <button class="mobile-nav-item" onclick="location.href='../listagem_anuncio/index.html'">Meus Anúncios</button>
+        <button class="mobile-nav-item" onclick="location.href='../registro_anuncio/index.html'">Novo Anúncio</button>
+    `;
+    
+    const logo = document.getElementById('logo');
+    logo.onclick = () => location.href = '../principal_interna/index.html';
+}
+
+function updateHeaderForLoggedOutUser() {
+    const navLeft = document.querySelector('.nav-left');
+    navLeft.innerHTML = `
+        <button class="nav-item" onclick="location.href='../cadastro_usuario/index.html'">Cadastre-se</button>
+    `;
+    
+    const navRight = document.querySelector('.nav-right');
+    navRight.innerHTML = `
+        <button class="nav-item" onclick="location.href='../login/index.html'">Faça login</button>
+    `;
+    
+    const mobileNav = document.querySelector('.mobile-nav');
+    mobileNav.innerHTML = `
+        <button class="nav-item" onclick="location.href='../cadastro_usuario/index.html'">Cadastre-se</button>
+        <button class="nav-item" onclick="location.href='../principal_externa/index.html'">Ache seu veíco</button>
+        <button class="nav-item" onclick="location.href='../login/index.html'">Faça login</button>
+    `;
+    
+    const logo = document.getElementById('logo');
+    logo.onclick = () => location.href = '../principal_externa/index.html';
+}
