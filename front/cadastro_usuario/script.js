@@ -12,7 +12,9 @@ async function register(event) {
   event.preventDefault();
 
   const formData = new FormData(formElement);
-  const url = '/../../back/anunciante/AnuncianteController.php';
+  //const url = '/../../back/anunciante/AnuncianteController.php';
+  const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anunciante/AnuncianteController.php`;
+  const url = API_BASE_URL;
 
   try {
     const formObject = Object.fromEntries(formData);

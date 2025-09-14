@@ -13,8 +13,11 @@ const formElement = document.querySelector('form');
 async function register(event) {
   event.preventDefault();
 
-    const formData = new FormData(formElement);
-    const url = '../../back/anuncio/AnuncioController.php';
+
+  //const url = '../../back/anuncio/AnuncioController.php';
+  const formData = new FormData(formElement);
+  const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anuncio/AnuncioController.php`;
+  const url = API_BASE_URL;
 
   formData.append('action', 'register');
   formData.append('dataHora', new Date().toISOString());

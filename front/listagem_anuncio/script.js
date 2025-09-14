@@ -5,6 +5,8 @@ themeToggle.addEventListener('click', () => {
   body.classList.toggle('dark-theme');
 });
 
+const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anuncio/AnuncioController.php`;
+
 document.addEventListener('DOMContentLoaded', () => {
   gatekeeper();
   const announcementsContainer = document.querySelector('.announcements-container');
@@ -12,17 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
   async function carregarAnuncios() {
     announcementsContainer.innerHTML = '<p>Carregando seus anúncios...</p>';
 
-        try {
-            const url = '/../../back/anuncio/AnuncioController.php';
-            const options = {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                action: 'listUser'
-              })
-            };
+    try {
+      const url = API_BASE_URL;
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: 'listUser'
+        })
+      };
 
       const response = await fetch(url, options);
       const data = await response.json();
@@ -76,7 +78,7 @@ async function excluirAnuncio(anuncioId) {
       },
       body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
     };
-    let response = await fetch(`/../../back/anuncio/AnuncioController.php`, options);
+    let response = await fetch(API_BASE_URL, options);
     console.log(await response.json());
     window.location.reload();
   }

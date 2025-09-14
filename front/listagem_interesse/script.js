@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         interestsContainer.innerHTML = '<h3>LISTA DE INTERESSES</h3><p>Carregando interesses...</p>';
         
         try {
-            const url = '/../../back/anuncio/AnuncioController.php';
+            //const url = '/../../back/anuncio/AnuncioController.php';
+            const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anuncio/AnuncioController.php`;
+            const url = API_BASE_URL;
             const options = {
                 method: 'POST',
                 headers: {

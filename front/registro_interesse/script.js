@@ -62,7 +62,9 @@ async function register(event) {
         dataHora: new Date().toISOString()
     };
 
-    const url = '/../../back/interesse/InteresseController.php';
+    //const url = '/../../back/interesse/InteresseController.php';
+    const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/interesse/InteresseController.php`;
+    const url = API_BASE_URL;
 
     try {
         const options = {

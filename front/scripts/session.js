@@ -1,6 +1,7 @@
 async function checkSession() {
     try {
-        const response = await fetch('../../back/anunciante/AnuncianteController.php?action=checkSession', {
+        const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anunciante/AnuncianteController.php?action=checkSession`;
+        const response = await fetch(API_BASE_URL, {
             method: 'GET'
         });
         const result = await response.json();
