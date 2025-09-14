@@ -73,7 +73,7 @@ async function excluirAnuncio(anuncioId) {
   if (confirm('Tem certeza que deseja excluir este anúncio?')) {
     try {
       const options = {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
