@@ -241,8 +241,11 @@ class AnuncioRepository
         }
 
         if (!empty($filters['search'])) {
-            $query .= " AND (a.marca LIKE :search OR a.modelo LIKE :search OR a.descricao LIKE :search)";
-            $params['search'] = '%' . $filters['search'] . '%';
+            $query .= " AND (a.marca LIKE :search_marca OR a.modelo LIKE :search_modelo OR a.descricao LIKE :search_descricao)";
+            $searchValue = '%' . $filters['search'] . '%';
+            $params['search_marca'] = $searchValue;
+            $params['search_modelo'] = $searchValue;
+            $params['search_descricao'] = $searchValue;
         }
 
         $query .= " ORDER BY a.data_hora DESC";
