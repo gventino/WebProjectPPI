@@ -234,7 +234,7 @@ switch ($action) {
         $mensagemInteresseService = $interesseService->getInteressesByAnuncioId($anuncioId);
         if (!$mensagemInteresseService->success) {
             http_response_code(404);
-            echo json_encode($messageAnuncioService);
+            echo json_encode($mensagemInteresseService);
             break;
         }
         $interesses = $mensagemInteresseService->obj;
