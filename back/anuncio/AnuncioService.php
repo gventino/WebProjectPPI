@@ -119,4 +119,38 @@ class AnuncioService
             );
         }
     }
+
+    public function listAll(array $filters = []): MessageDTO
+    {
+        try {
+            $anuncios = $this->repository->listAll($filters);
+            return new MessageDTO(
+                success: true,
+                message: 'Listagem de anúncios realizada com sucesso',
+                obj: $anuncios
+            );
+        } catch (Throwable $e) {
+            return new MessageDTO(
+                success: false,
+                message: 'Erro ao listar anúncios - ' . $e->getMessage()
+            );
+        }
+    }
+    // USAMOS PARA POPULAR OS FILTROS DROPDOWN
+    public function getDistinctValues(string $field): MessageDTO
+    {
+        try {
+            $values = $this->repository->getDistinctValues($field);
+            return new MessageDTO(
+                success: true,
+                message: 'Valores distintos obtidos com sucesso',
+                obj: $values
+            );
+        } catch (Throwable $e) {
+            return new MessageDTO(
+                success: false,
+                message: 'Erro ao obter valores distintos - ' . $e->getMessage()
+            );
+        }
+    }
 }
