@@ -223,6 +223,13 @@ switch ($action) {
             break;
         }
 
+        $isOwnerMessage = $anuncioService->isOwner($anuncioId);
+        if (!$isOwnerMessage->success) {
+            http_response_code(401);
+            echo json_encode($isOwnerMessage);
+            break;
+        }
+
         $messageAnuncioService = $anuncioService->getById($anuncioId);
         if (!$messageAnuncioService->success) {
             http_response_code(404);
