@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         interestsContainer.innerHTML = '<h3>LISTA DE INTERESSES</h3><p>Carregando interesses...</p>';
         
         try {
-            const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+            const url = '/../../back/anuncio/AnuncioController.php';
             const options = {
                 method: 'POST',
                 headers: {
@@ -111,10 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="contact-item">
                             <span class="label">Telefone:</span>
                             <span class="value">${interesse.telefone}</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="label">Email:</span>
-                            <span class="value">${interesse.email}</span>
                         </div>
                     </div>
                     <div class="message-section">
