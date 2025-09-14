@@ -15,7 +15,8 @@ document.querySelector('button[type="button"]').addEventListener('click', async 
     }
     
     try {
-        const response = await fetch('../../back/anunciante/AnuncianteController.php', {
+        const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anunciante/AnuncianteController.php`;
+        const response = await fetch(API_BASE_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

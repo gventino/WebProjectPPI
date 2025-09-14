@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function carregarDetalhesAnuncio(anuncioId) {
     try {
-        const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+        const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anuncio/AnuncioController.php`;
+        const url = API_BASE_URL;
         const options = {
             method: 'POST',
             headers: {

@@ -5,6 +5,8 @@ themeToggle.addEventListener('click', () => {
   body.classList.toggle('dark-theme');
 });
 
+const API_BASE_URL = `${window.location.protocol}//${window.location.host}/back/anuncio/AnuncioController.php`;
+
 document.addEventListener('DOMContentLoaded', () => {
   const announcementsContainer = document.querySelector('.announcements-container');
 
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     announcementsContainer.innerHTML = '<p>Carregando seus anúncios...</p>';
 
     try {
-      const url = 'http://localhost:8080/back/anuncio/AnuncioController.php';
+      const url = API_BASE_URL;
       const options = {
         method: 'POST',
         headers: {
@@ -75,7 +77,7 @@ async function excluirAnuncio(anuncioId) {
       },
       body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
     };
-    let response = await fetch(`http://localhost:8080/back/anuncio/AnuncioController.php`, options);
+    let response = await fetch(API_BASE_URL, options);
     console.log(await response.json());
     window.location.reload();
   }
