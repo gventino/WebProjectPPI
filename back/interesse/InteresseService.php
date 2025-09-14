@@ -23,7 +23,7 @@ class InteresseService
         } catch (Throwable $e) {
             return new MessageDTO(
                 success: false,
-                message: 'Algo deu errado durante a busca dos interesses.'
+                message: 'Algo deu errado durante a busca dos interesses. Erro: ' . $e->getMessage()
             );
         }
     }
