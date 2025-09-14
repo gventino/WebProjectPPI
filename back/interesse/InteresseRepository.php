@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../internal/logger/LogService.php';
+require_once __DIR__ . '/InteresseDTO.php';
 require_once __DIR__ . '/../internal/database/DatabaseService.php';
 
 class InteresseRepository
@@ -21,5 +22,24 @@ class InteresseRepository
 
         $result = $this->service->prepareExecute($query, [$anuncioId]);
         return $result->stmt->fetchAll();
+    }
+
+    public function registerInteresse(InteresseDTO $interesse): bool
+    {
+        $query = <<<SQL
+                INSERT INTO interesse (nome, telefone, mensagem, data_hora, id_anuncio)
+                    VALUES (:nome, :telefone, :mensagem, :data_hora, :id_anuncio);
+            SQL;
+
+        $params = [
+            'nome' => $interesse->nome,
+            'telefone' => $interesse->telefone,
+            'mensagem' => $interesse->mensagem,
+            'data_hora' => $interesse->dataHora,
+            'id_anuncio' => $interesse->idAnuncio
+        ];
+
+        $result = $this->service->prepareExecute($query, $params);
+        return $result->success;
     }
 }
