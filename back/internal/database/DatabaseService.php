@@ -1,12 +1,17 @@
 <?php
 
-require_once __DIR__ . "/DatabaseResponseDTO.php";
-require_once __DIR__ . "/../env/EnvService.php";
-require_once __DIR__ . "/../logger/LogService.php";
+require_once __DIR__ . '/DatabaseResponseDTO.php';
+require_once __DIR__ . '/../env/EnvService.php';
+require_once __DIR__ . '/../logger/LogService.php';
 
 class DatabaseService
 {
     public PDO $pdo;
+
+    private array $options = [
+        PDO::ATTR_EMULATE_PREPARES => false,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ];
 
     public function __construct()
     {
@@ -48,7 +53,7 @@ class DatabaseService
     public function transactionExecute(array $queries, array $args = []): bool
     {
         if (count($queries) != count($args)) {
-            throw new Exception("unable to start transaction - queries and args have different sizes");
+            throw new Exception('unable to start transaction - queries and args have different sizes');
         }
 
         try {

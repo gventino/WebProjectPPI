@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../messages/MessageObjInterface.php";
+require_once __DIR__ . '/../messages/MessageObjInterface.php';
 
 class AnuncianteDTO implements MessageObjInterface
 {
@@ -11,18 +11,17 @@ class AnuncianteDTO implements MessageObjInterface
         public string $senhaHash,
         public string $telefone,
         public ?int $id = null
-    ) {
-    }
+    ) {}
 
     public static function anuncianteFromArray(array $array): AnuncianteDTO
     {
         return new self(
-            id: $array["id"],
-            nome: $array["nome"],
-            cpf: $array["cpf"],
-            email: $array["email"],
-            senhaHash: $array["senha_hash"],
-            telefone: $array["telefone"]
+            id: $array['id'],
+            nome: $array['nome'],
+            cpf: $array['cpf'],
+            email: $array['email'],
+            senhaHash: $array['senha_hash'],
+            telefone: $array['telefone']
         );
     }
 }

@@ -5,7 +5,7 @@ class EnvService
     public static function loadEnv(): array
     {
         $envs = [];
-        $path = __DIR__ . "/../../../.env";
+        $path = __DIR__ . '/../../../.env';
         if (!is_readable($path)) {
             throw new \RuntimeException(sprintf('O arquivo de ambiente "%s" não foi encontrado ou não pode ser lido.', $path));
         }
@@ -27,7 +27,7 @@ class EnvService
                     $partes = explode('=', $linha, 2);
 
                     if (count($partes) !== 2) {
-                        continue; // Ignora linhas mal formatadas
+                        continue;  // Ignora linhas mal formatadas
                     }
 
                     $chave = trim($partes[0]);

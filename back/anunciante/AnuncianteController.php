@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . "/../internal/logger/LogService.php";
-require_once __DIR__ . "/AnuncianteService.php";
-require_once __DIR__ . "/AnuncianteDTO.php";
-require_once __DIR__ . "/../messages/MessageDTO.php";
+require_once __DIR__ . '/../internal/logger/LogService.php';
+require_once __DIR__ . '/AnuncianteService.php';
+require_once __DIR__ . '/AnuncianteDTO.php';
+require_once __DIR__ . '/../messages/MessageDTO.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -30,7 +30,7 @@ if ($method === 'GET') {
 $stringJSON = file_get_contents('php://input');
 $plainObject = json_decode($stringJSON);
 
-$action = $plainObject->action ?? "empty";
+$action = $plainObject->action ?? 'empty';
 switch ($action) {
     case 'register':
         $anunciante = new AnuncianteDTO(

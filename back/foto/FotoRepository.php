@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../internal/logger/LogService.php";
-require_once __DIR__ . "/../internal/database/DatabaseService.php";
+require_once __DIR__ . '/../internal/logger/LogService.php';
+require_once __DIR__ . '/../internal/database/DatabaseService.php';
 
 class FotoRepository
 {
@@ -20,23 +20,23 @@ class FotoRepository
         $inClause = implode(',', array_fill(0, count($idsAnuncios), '?'));
 
         $query = <<<SQL
-          SELECT
-              f.id_anuncio,
-              f.nome_arq_foto
-          FROM
-              foto f
-          INNER JOIN (
               SELECT
-                  id_anuncio,
-                  MIN(id) AS primeira_foto_id
+                  f.id_anuncio,
+                  f.nome_arq_foto
               FROM
-                  foto
-              WHERE
-                  id_anuncio IN ($inClause)
-              GROUP BY
-                  id_anuncio
-          ) AS primeiras_fotos ON f.id = primeiras_fotos.primeira_foto_id;
-        SQL;
+                  foto f
+              INNER JOIN (
+                  SELECT
+                      id_anuncio,
+                      MIN(id) AS primeira_foto_id
+                  FROM
+                      foto
+                  WHERE
+                      id_anuncio IN ($inClause)
+                  GROUP BY
+                      id_anuncio
+              ) AS primeiras_fotos ON f.id = primeiras_fotos.primeira_foto_id;
+            SQL;
         $result = $this->service->prepareExecute($query, $idsAnuncios);
 
         $photosMap = [];
@@ -47,21 +47,21 @@ class FotoRepository
         }
 
         return $photosMap;
-  }
+    }
 
-  public function getFotosByAnuncioId(int $anuncioId): array 
-  {
-      $query = <<<SQL
-        SELECT nome_arq_foto 
-          FROM foto
-          WHERE id_anuncio = ?;
-      SQL;
+    public function getFotosByAnuncioId(int $anuncioId): array
+    {
+        $query = <<<SQL
+              SELECT nome_arq_foto 
+                FROM foto
+                WHERE id_anuncio = ?;
+            SQL;
 
-      $response = $this->service->prepareExecute($query, [$anuncioId]);
-      if (!$response->success) {
-        throw new Exception("Could not get fotos for anuncioId = $anuncioId");
-      }
-      $fotos = $response->stmt->fetchAll();
-      return array_map(fn($foto) => $foto['nome_arq_foto'], $fotos);
-  }
+        $response = $this->service->prepareExecute($query, [$anuncioId]);
+        if (!$response->success) {
+            throw new Exception("Could not get fotos for anuncioId = $anuncioId");
+        }
+        $fotos = $response->stmt->fetchAll();
+        return array_map(fn($foto) => $foto['nome_arq_foto'], $fotos);
+    }
 }
