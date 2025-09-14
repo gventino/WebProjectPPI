@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         interesses.forEach((interesse, index) => {
-            const dataFormatada = new Date(interesse.data_interesse).toLocaleString('pt-BR', {
+            const dataFormatada = new Date(interesse.data_hora).toLocaleString('pt-BR', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',

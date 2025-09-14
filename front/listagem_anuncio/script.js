@@ -71,16 +71,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function excluirAnuncio(anuncioId) {
   if (confirm('Tem certeza que deseja excluir este anúncio?')) {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
-    };
-    let response = await fetch(API_BASE_URL, options);
-    console.log(await response.json());
-    window.location.reload();
+    try {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ anuncioId: anuncioId, action: 'delete' })
+      };
+      
+      const response = await fetch(API_BASE_URL, options);
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        alert('Anúncio excluído com sucesso!');
+        window.location.reload();
+      } else {
+        alert(`Erro ao excluir anúncio: ${data.message || 'Erro desconhecido'}`);
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      alert('Erro de conexão. Verifique sua internet e tente novamente.');
+    }
   }
 }
 
